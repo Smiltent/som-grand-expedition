@@ -3,6 +3,16 @@
     margin: 0;
 }
 
+body {
+    background-image: url("/assets/bg.png");
+    background-color: black;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+}
+
 /* Locations (Layers) */
 .a-davequestion {
     width: 100vw;
@@ -15,10 +25,9 @@
 
     color: black;
     background-color: black;
-}
 
-.b-crib {
-
+    opacity: 1;
+    transition: opacity 2s;
 }
 
 /* Assets */
@@ -46,6 +55,7 @@
 }
 
 .aa-davetext {
+    text-shadow: 2px 2px black;
     font-family: "Roboto Mono", monospace;
     font-size: 2rem;
     padding-bottom: 1rem;
