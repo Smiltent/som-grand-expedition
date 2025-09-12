@@ -6,9 +6,10 @@
     <title>dave the magical wizard</title>
 
     <!-- CSS + Prefetch Images -->
-    <link rel="prefetch" href="/assets/davenohat.png">
-    <link rel="prefetch" href="/assets/2_basement.png">
-    <link rel="prefetch" href="/assets/3_crystal.png">
+    <link rel="preload" href="/assets/locations/davenohat.png" as="image">
+    <link rel="preload" href="/assets/locations/1_main.png" as="image">
+    <link rel="preload" href="/assets/locations/2_basement.png" as="image">
+    <link rel="preload" href="/assets/locations/3_crystal.png" as="image">
     <link rel="stylesheet" href="/style.css">
 
     <!-- Roboto Mono Font -->
@@ -18,13 +19,15 @@
 </head>
 <body>
     <!-- Question asking + main area -->
-    <div class="absolute" id="daveLoc">
+    <div class="absolute unselectable" id="daveLoc">
         <p id="daveText"></p>
-        <img id="daveCharacter" src="/assets/dave.png" alt="Dave the Magical Wizard">
+        <img id="daveCharacter" src="/assets/dave/dave.png" alt="Dave the Magical Wizard">
         <input id="daveTextBox" type="text" required placeholder="Type your question here...">
+
+        <div class="absolute" id="btnDownstairs"></div>
     </div>
 
-    <!-- Basement area -->
+    <!-- Basement area (yes, i was lazy with the chains) -->
     <div class="absolute" id="basementLoc">
 
     </div>

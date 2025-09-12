@@ -1,10 +1,13 @@
 
-const themes = [
-    {"name": "main", "bg": "/assets/1_main.png"},
-    {"name": "basement", "bg": "/assets/2_basement.png"},
-    {"name": "crystal", "bg": "/assets/3_crystal.png"}
+// location System
+const locations = [
+    {"name": "daveLoc", "bg": "/assets/locations/1_main.png"},
+    {"name": "basementLoc", "bg": "/assets/locations/2_basement.png"},
+    {"name": "crystalLoc", "bg": "/assets/locations/3_crystal.png"}
 ]
+var currentLocation = "daveLoc"
 
+// dave Texts on start
 // const initText = [
 //     {"t": "didnt ask lmao!", "to": 500},
 //     {"t": "come in my crib tho", "to": 1000},
@@ -19,16 +22,23 @@ const initText = [
     {"t": "dev!", "to": 1, click: true, bg: true}
 ]
 
+// allow clicking dave
 var allowClickingDave = false
-var currentTheme = themes[0]
 
-// Json object list with dave's responces
+// json object list with dave's responces
 var daveTextList = fetch("/assets/text.json").then(response => response.json())
 
-var daveLocation = document.getElementById("daveLoc") // Parent of all elements below
+// parent of all elements below
+var daveLocation = document.getElementById("daveLoc") 
 var daveText = document.getElementById("daveText") // Dave Text (above)
 var daveImage = document.getElementById("daveCharacter") // Dave Image (center)
 var daveTextBox = document.getElementById("daveTextBox") // Dave Text Box (below, used once)
+
+// location Buttons
+var btnDownstairs = document.getElementById("btnDownstairs")
+var btnUpstairs = document.getElementById("btnUpstairs")
+var btnToCrystal = document.getElementById("btnToCrystal")
+var btnFromCrystal = document.getElementById("btnFromCrystal")
 
 // Dave Text Animation
 // handling the text animation at the begining of the page
@@ -56,9 +66,20 @@ function daveTextAnimation(t, speed) {
     type()
 }
 
+// Location Change Handler
+// handles changing locations when buttons are pressed
+function changeLocation(to) {
+    if (!locations.some(e => e.name === to)) return
+
+    currentLocation = to
+    document.body.style.backgroundImage = `url('${locations.find(e => e.name === to).bg}')`
+}
+
 // On Load
 // the... uhh.. 🤔 (i forgor) uhm.. thing!!
 window.addEventListener('DOMContentLoaded', () => {
+    daveLocation.style.backgroundColor = "transparent" // TEMP!
+
     var text = "Ask me anything..."
     var textSpeed = 1 // 120
 
@@ -66,7 +87,8 @@ window.addEventListener('DOMContentLoaded', () => {
         daveTextAnimation(text, textSpeed)
 
         setTimeout(() => {
-            daveTextBox.style.opacity = 1
+            daveTextBox.style.visibility = "visible"
+            daveTextBox.style.opacity = "1"
         }, textSpeed * text.length + textSpeed)
     }, 3000)
 })
@@ -84,7 +106,7 @@ daveTextBox.addEventListener("keydown", function(event) {
 
         event.preventDefault()
 
-        daveTextBox.style.opacity = 0
+        daveTextBox.style.opacity = "0"
 
         var delay = 0
         initText.forEach(e => {
@@ -99,6 +121,9 @@ daveTextBox.addEventListener("keydown", function(event) {
             }, delay)
             delay += (textSpeed * e.t.length) + e.to
         })
+        setTimeout(() => {
+            daveTextBox.remove()
+        }, delay)
     }
 })
 
@@ -120,13 +145,13 @@ daveImage.addEventListener("click", function() {
 
             // custom tags handling custom situations
             if (text.startsWith("<hat>")) {
-                daveImage.src = "/assets/davenohat.png";
-                text = text.replace("<hat>", "").trim();
-                daveImage.classList.add("hasHat");
+                daveImage.src = "/assets/davenohat.png"
+                text = text.replace("<hat>", "").trim()
+                daveImage.classList.add("hasHat")
             } else if (text.startsWith("<onlyhat>")) {
-                daveImage.src = "/assets/daveonlyhat.png";
-                text = text.replace("<onlyhat>", "").trim();
-                daveImage.classList.add("hasOnlyHat");
+                daveImage.src = "/assets/daveonlyhat.png"
+                text = text.replace("<onlyhat>", "").trim()
+                daveImage.classList.add("hasOnlyHat")
             }
 
             daveTextAnimation(text, 50)
@@ -137,3 +162,6 @@ daveImage.addEventListener("click", function() {
         })
     }
 })
+
+// On Button to Downstairs Click
+btnDownstairs.addEventListener("click", () => changeLocation("basementLoc"))
