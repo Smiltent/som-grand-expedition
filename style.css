@@ -4,7 +4,7 @@
 }
 
 body {
-    background-image: url("/assets/bg.png");
+    background-image: url("/assets/1_main.png");
     background-color: black;
     background-size: cover;
     background-position: center;
@@ -12,9 +12,11 @@ body {
     width: 100vw;
     height: 100vh;
 }
+.relative { position: relative; }
+.absolute { position: absolute; }
 
 /* Locations (Layers) */
-.a-davequestion {
+#daveLoc {
     width: 100vw;
     height: 100vh;
 
@@ -31,14 +33,17 @@ body {
 }
 
 /* Assets */
-.aa-dave {
+#daveCharacter {
     filter: drop-shadow(1px 1px 15px rgba(151, 145, 145, 0.5));
+    filter: drop-shadow(1px 1px 15px rgba(0, 0, 0, 0.5));
 
     opacity: 0;
     animation: fadeIn 4s forwards;
+
+    cursor: not-allowed;
 }
 
-.aa-davebox {
+#daveTextBox {
     padding: 0 0.5rem;
     outline: none;
     width: 16rem;
@@ -54,7 +59,7 @@ body {
     background-color: transparent;
 }
 
-.aa-davetext {
+#daveText {
     text-shadow: 2px 2px black;
     font-family: "Roboto Mono", monospace;
     font-size: 2rem;

@@ -5,31 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>dave the magical wizard</title>
 
+    <!-- CSS + Prefetch Images -->
+    <link rel="prefetch" href="/assets/davenohat.png">
+    <link rel="prefetch" href="/assets/2_basement.png">
+    <link rel="prefetch" href="/assets/3_crystal.png">
     <link rel="stylesheet" href="/style.css">
 
+    <!-- Roboto Mono Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Asking the question part thing -->
-    <div class="a-davequestion" id="davequestion">
-        <p id="davetext" class="aa-davetext"></p>
-
-        <div class="aa-dave" id="dave">
-            <img src="/assets/dave.png" alt="Dave the Magical Wizard" style="cursor: not-allowed;">
-        </div>
-
-        <input class="aa-davebox" type="text" id="davetextbox" required placeholder="Type your question here...">
+    <!-- Question asking + main area -->
+    <div class="absolute" id="daveLoc">
+        <p id="daveText"></p>
+        <img id="daveCharacter" src="/assets/dave.png" alt="Dave the Magical Wizard">
+        <input id="daveTextBox" type="text" required placeholder="Type your question here...">
     </div>
 
-    <!-- Main area -->
-    <div class="b-main" id="main">
+    <!-- Basement area -->
+    <div class="absolute" id="basementLoc">
 
     </div>
 
     <!-- Basement -->
-    <div class="c-basement" id="basement">
+    <div class="absolute" id="crystalLoc">
 
     </div>
 
