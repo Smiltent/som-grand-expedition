@@ -8,18 +8,15 @@ const locations = [
 var currentLocation = "daveLoc"
 
 // dave Texts on start
-// const initText = [
-//     {"t": "didnt ask lmao!", "to": 500},
-//     {"t": "come in my crib tho", "to": 1000},
-//     {"t": "theres not much here", "to": 1000, bg: true},
-//     {"t": "but if you go downstairs", "to": 1000},
-//     {"t": "theres a buletin board with some info", "to": 1000},
-//     {"t": "idk why its there, but its pretty cool ngl", "to": 3000},
-//     {"t": "wait you think i have more to say?", "to": 2800},
-//     {"t": "you can click on me to talk if you want", "to": 1, click: true}
-// ]
 const initText = [
-    {"t": "dev!", "to": 1, click: true, bg: true}
+    {"t": "didnt ask lmao!", "to": 500},
+    {"t": "come in my crib tho", "to": 1000},
+    {"t": "theres not much here", "to": 1000, bg: true},
+    {"t": "but if you go downstairs", "to": 1000},
+    {"t": "theres a buletin board with some info", "to": 1000},
+    {"t": "idk why its there, but its pretty cool ngl", "to": 3000},
+    {"t": "wait you think i have more to say?", "to": 2800},
+    {"t": "you can click on me to talk if you want", "to": 1, click: true}
 ]
 
 // allow clicking dave
@@ -70,16 +67,19 @@ function daveTextAnimation(t, speed) {
 // handles changing locations when buttons are pressed
 function changeLocation(to) {
     if (!locations.some(e => e.name === to)) return
+    var loc = locations.find(e => e.name === to)
+
+    document.getElementById(currentLocation).style.visibility = "hidden"
+
+    document.body.style.backgroundImage = `url('${loc.bg}')`
 
     currentLocation = to
-    document.body.style.backgroundImage = `url('${locations.find(e => e.name === to).bg}')`
+    document.getElementById(currentLocation).style.visibility = "visible"
 }
 
 // On Load
 // the... uhh.. 🤔 (i forgor) uhm.. thing!!
 window.addEventListener('DOMContentLoaded', () => {
-    daveLocation.style.backgroundColor = "transparent" // TEMP!
-
     var text = "Ask me anything..."
     var textSpeed = 1 // 120
 
@@ -113,7 +113,10 @@ daveTextBox.addEventListener("keydown", function(event) {
             setTimeout(() => {
                 daveTextAnimation(e.t, textSpeed)
 
-                if (e.bg) { daveLocation.style.backgroundColor = "transparent" }
+                if (e.bg) { 
+                    daveLocation.style.backgroundColor = "transparent"
+                    document.getElementById("btnDownstairs").style.removeProperty("visibility")
+                }
                 if (e.click) { 
                     allowClickingDave = true 
                     daveImage.style.cursor = "pointer"
@@ -139,17 +142,17 @@ daveImage.addEventListener("click", function() {
             var text = values[randomIndex]
 
             if (daveImage.classList.contains("hasHat") || daveImage.classList.contains("hasOnlyHat")) {
-                daveImage.src = "/assets/dave.png"
+                daveImage.src = "/assets/dave/dave.png"
                 daveImage.classList.remove("hasHat", "hasOnlyHat")
             }
 
             // custom tags handling custom situations
             if (text.startsWith("<hat>")) {
-                daveImage.src = "/assets/davenohat.png"
+                daveImage.src = "/assets/dave/davenohat.png"
                 text = text.replace("<hat>", "").trim()
                 daveImage.classList.add("hasHat")
             } else if (text.startsWith("<onlyhat>")) {
-                daveImage.src = "/assets/daveonlyhat.png"
+                daveImage.src = "/assets/dave/daveonlyhat.png"
                 text = text.replace("<onlyhat>", "").trim()
                 daveImage.classList.add("hasOnlyHat")
             }
@@ -163,5 +166,13 @@ daveImage.addEventListener("click", function() {
     }
 })
 
+// On Page Resize
+// handle page resizing, for mobile support & random screen handling
+
+
+
 // On Button to Downstairs Click
 btnDownstairs.addEventListener("click", () => changeLocation("basementLoc"))
+btnUpstairs.addEventListener("click", () => changeLocation("daveLoc"))
+btnToCrystal.addEventListener("click", () => changeLocation("crystalLoc"))
+btnFromCrystal.addEventListener("click", () => changeLocation("basementLoc"))

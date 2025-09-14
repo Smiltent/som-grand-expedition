@@ -5,11 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>dave the magical wizard</title>
 
-    <!-- CSS + Prefetch Images -->
-    <link rel="preload" href="/assets/locations/davenohat.png" as="image">
+    <!-- CSS + Preload Images -->
+    <link rel="preload" href="/assets/dave/dave.png" as="image">
+    <link rel="preload" href="/assets/dave/davenohat.png" as="image">
+    <link rel="preload" href="/assets/dave/daveonlyhat.png" as="image">
+
     <link rel="preload" href="/assets/locations/1_main.png" as="image">
     <link rel="preload" href="/assets/locations/2_basement.png" as="image">
     <link rel="preload" href="/assets/locations/3_crystal.png" as="image">
+
+    <link rel="preload" href="/assets/other/up.png" as="image">
+    <link rel="preload" href="/assets/other/down.png" as="image">
     <link rel="stylesheet" href="/style.css">
 
     <!-- Roboto Mono Font -->
@@ -18,22 +24,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Question asking + main area -->
-    <div class="absolute unselectable" id="daveLoc">
+    <!-- Main Area -->
+    <div class="absolute unselectable location" id="daveLoc">
         <p id="daveText"></p>
         <img id="daveCharacter" src="/assets/dave/dave.png" alt="Dave the Magical Wizard">
         <input id="daveTextBox" type="text" required placeholder="Type your question here...">
 
-        <div class="absolute" id="btnDownstairs"></div>
+        <div class="absolute" id="btnDownstairs" style="visibility: hidden;"></div>
     </div>
 
     <!-- Basement area (yes, i was lazy with the chains) -->
-    <div class="absolute" id="basementLoc">
+    <div class="absolute unselectable location" id="basementLoc" style="visibility: hidden;">
+        <div class="absolute" id="btnUpstairs"></div>
 
+        <!-- <div class="absolute" id="btnCrystal"></div> -->
     </div>
 
-    <!-- Basement -->
-    <div class="absolute" id="crystalLoc">
+    <!-- Crystal area (if you saw this via html, then you got spoiled) -->
+    <div class="absolute unselectable location" id="crystalLoc" style="visibility: hidden;">
 
     </div>
 

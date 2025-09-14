@@ -4,13 +4,14 @@
 }
 
 body {
+    height: 100vh;
+    overflow: hidden;
+
     background-image: url("/assets/locations/1_main.png");
-    background-color: black;
-    background-size: cover;
+    background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    width: 100vw;
-    height: 100vh;
+    background-color: black;
 }
 .relative { position: relative; }
 .absolute { position: absolute; }
@@ -20,9 +21,13 @@ body {
     -moz-user-select: none;
     -ms-user-select: none;
 }
+.hidden { 
+    visibility: hidden;
+    opacity: 0;
+}
 
 /* Locations (Layers) */
-#daveLoc {
+.location {
     width: 100vw;
     height: 100vh;
 
@@ -32,10 +37,12 @@ body {
     justify-content: center;
 
     color: black;
-    background-color: black;
+}
 
+#daveLoc {
     opacity: 1;
     transition: opacity 2s;
+    background-color: black;
 }
 
 /* Assets */
@@ -43,15 +50,25 @@ body {
     text-shadow: 2px 2px black;
     font-family: "Roboto Mono", monospace;
     font-size: 2rem;
-    padding-bottom: 1rem;
-    height: 60px;
 
+    text-align: center;
+
+    height: auto;
+    max-width: 90vw;
+    min-height: 60px;
+
+    padding-bottom: 1rem;
     color: white;
 }
 
 #daveCharacter {
     filter: drop-shadow(1px 1px 15px rgba(151, 145, 145, 0.5));
     filter: drop-shadow(1px 1px 15px rgba(0, 0, 0, 0.5));
+
+    max-width: 40vw;
+    max-height: 40vh;
+    width: auto;
+    height: auto;
 
     opacity: 0;
     animation: fadeIn 4s forwards;
@@ -83,7 +100,18 @@ body {
     background-position: center;
     background-repeat: no-repeat;
 
-    bottom: 2rem; 
+    bottom: 5vh; 
+    padding: 3rem 2rem;
+    cursor: pointer;
+}
+
+#btnUpstairs {
+    background-image: url("/assets/other/up.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    top: 5vh;
     padding: 3rem 2rem;
     cursor: pointer;
 }
