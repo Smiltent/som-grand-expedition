@@ -24,28 +24,51 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Main Area -->
-    <div class="absolute unselectable location" id="daveLoc">
-        <p id="daveText"></p>
-        <img id="daveCharacter" src="/assets/dave/dave.png" alt="Dave the Magical Wizard">
-        <input id="daveTextBox" type="text" required placeholder="Type your question here...">
+    <!--   ____ _____ ____  ____  _   -->
+    <!--  / ___Y__ __Y  _ \/  __\/ \  -->
+    <!--  |    \ / \ | / \||  \/|| |  -->
+    <!--  \___ | | | | \_/||  __/\_/  -->
+    <!--  \____/ \_/ \____/\_/   (_)  -->
+    <!-- If you wish to not be spoiled, do not view the files!-->
+    <div class="container">
+        <!-- Main -->
+        <div class="unselectable location" id="daveLoc">
+            <div class="center-container">
+                <p id="daveText"></p>
+                <img id="daveCharacter" src="/assets/dave/dave.png" alt="Dave the Magical Wizard">
+                <input id="daveTextBox" type="text" required placeholder="Type your question here...">
+            </div>
 
-        <div class="absolute" id="btnDownstairs" style="visibility: hidden;"></div>
+            <div id="btnDownstairs" style="visibility: hidden;"></div>
+            
+            <img class="locationBgImg" src="/assets/locations/1_main.png" alt="bg">
+        </div>
+
+        <!-- Basement -->
+        <div class="unselectable location" id="basementLoc" style="visibility: hidden;">
+            <div class="absolute" id="btnUpstairs"></div>
+
+            <div class="absolute" id="btnBasementLeft"></div>
+            <div class="absolute" id="btnBasementRight"></div>
+
+            <!-- <div class="absolute" id="btnCrystal"></div> -->
+        </div>
+
+        <!-- Crystal -->
+        <div class="absolute unselectable location" id="crystalLoc" style="visibility: hidden;">
+
+        </div>
+
+        <!-- Outside -->
+        <div class="absolute unselectable location" id="outsideLoc" style="visibility: hidden;">
+
+        </div>
+
+        <!-- Attic -->
+        <div class="absolute unselectable location" id="atticLoc" style="visibility: hidden;">
+
+        </div>
     </div>
-
-    <!-- Basement area (yes, i was lazy with the chains) -->
-    <div class="absolute unselectable location" id="basementLoc" style="visibility: hidden;">
-        <div class="absolute" id="btnUpstairs"></div>
-
-        <!-- <div class="absolute" id="btnCrystal"></div> -->
-    </div>
-
-    <!-- Crystal area (if you saw this via html, then you got spoiled) -->
-    <div class="absolute unselectable location" id="crystalLoc" style="visibility: hidden;">
-
-    </div>
-
-    <!-- Script -->
     <script src="/script.js"></script>
 </body>
 </html>

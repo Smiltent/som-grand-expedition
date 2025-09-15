@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Background Fit</title>
+  <style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    html, body {
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: black;
+    }
+
+    .container {
+        position: relative;
+        display: inline-block;
+        max-width: 100vw;
+        max-height: 100vh;
+        width: auto;
+        height: auto;
+    }
+
+    .container > *:not(.bgimg) {
+        position: absolute;
+        z-index: 1;
+    }
+
+    .container .bgimg {
+        position: relative;
+
+        max-width: 100vw;
+        max-height: 100vh;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+
+        z-index: -1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <p>hi</p>
+    <img class="bgimg" src="../assets/locations/1_main.png" alt="a">
+  </div>
+</body>
+</html>

@@ -1,9 +1,9 @@
 
 // location System
 const locations = [
-    {"name": "daveLoc", "bg": "/assets/locations/1_main.png"},
-    {"name": "basementLoc", "bg": "/assets/locations/2_basement.png"},
-    {"name": "crystalLoc", "bg": "/assets/locations/3_crystal.png"}
+    {"name": "daveLoc"},
+    {"name": "basementLoc"},
+    {"name": "crystalLoc"}
 ]
 var currentLocation = "daveLoc"
 
@@ -13,7 +13,7 @@ const initText = [
     {"t": "come in my crib tho", "to": 1000},
     {"t": "theres not much here", "to": 1000, bg: true},
     {"t": "but if you go downstairs", "to": 1000},
-    {"t": "theres a buletin board with some info", "to": 1000},
+    {"t": "theres a bulletin board with some info", "to": 1000},
     {"t": "idk why its there, but its pretty cool ngl", "to": 3000},
     {"t": "wait you think i have more to say?", "to": 2800},
     {"t": "you can click on me to talk if you want", "to": 1, click: true}
@@ -71,7 +71,7 @@ function changeLocation(to) {
 
     document.getElementById(currentLocation).style.visibility = "hidden"
 
-    document.body.style.backgroundImage = `url('${loc.bg}')`
+    // document.body.style.backgroundImage = `url('${loc.bg}')`
 
     currentLocation = to
     document.getElementById(currentLocation).style.visibility = "visible"
@@ -81,7 +81,7 @@ function changeLocation(to) {
 // the... uhh.. 🤔 (i forgor) uhm.. thing!!
 window.addEventListener('DOMContentLoaded', () => {
     var text = "Ask me anything..."
-    var textSpeed = 1 // 120
+    var textSpeed = 120
 
     setTimeout(() => {
         daveTextAnimation(text, textSpeed)
@@ -100,7 +100,7 @@ daveTextBox.addEventListener("keydown", function(event) {
 
     if (event.key === "Enter") {
         if (!daveTextBox.value.endsWith("?")) {
-            daveTextAnimation("Thats not a question...", 1) // 120
+            daveTextAnimation("Thats not a question...", 120)
             return
         }
 
@@ -165,11 +165,6 @@ daveImage.addEventListener("click", function() {
         })
     }
 })
-
-// On Page Resize
-// handle page resizing, for mobile support & random screen handling
-
-
 
 // On Button to Downstairs Click
 btnDownstairs.addEventListener("click", () => changeLocation("basementLoc"))

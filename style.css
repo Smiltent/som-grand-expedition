@@ -1,42 +1,77 @@
+
 * {
     padding: 0;
     margin: 0;
 }
 
-body {
+html, body {
     height: 100vh;
     overflow: hidden;
+}
 
-    background-image: url("/assets/locations/1_main.png");
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: black;
 }
-.relative { position: relative; }
-.absolute { position: absolute; }
-.unselectable {
-     user-select: none;
+
+/* Locations (Layers) */
+/* .location {
+    position: relative;
+    display: inline-block;
+    max-width: 100vw;
+    max-height: 100vh;
+    width: auto;
+    height: auto;
+
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+} */
+
+.location {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
 }
-.hidden { 
-    visibility: hidden;
-    opacity: 0;
+
+.location > *:not(.locationBgImg) {
+    position: absolute;
+    object-fit: cover;
+
+    z-index: 1;
 }
 
-/* Locations (Layers) */
-.location {
-    width: 100vw;
-    height: 100vh;
+.location .locationBgImg {
+    position: relative;
 
+    max-width: 100vw;
+    max-height: 100vh;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    z-index: -1;
+}
+
+.center-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: center;    
+    justify-content: center;  
 
-    color: black;
+}
+
+.daveContainer {
+    display: flex;
+    flex-direction: column;
 }
 
 #daveLoc {
@@ -49,21 +84,20 @@ body {
 #daveText {
     text-shadow: 2px 2px black;
     font-family: "Roboto Mono", monospace;
-    font-size: 2rem;
+    font-size: 3vh;
 
     text-align: center;
 
     height: auto;
-    max-width: 90vw;
-    min-height: 60px;
+    max-height: 4vh;
 
     padding-bottom: 1rem;
     color: white;
 }
 
 #daveCharacter {
-    filter: drop-shadow(1px 1px 15px rgba(151, 145, 145, 0.5));
-    filter: drop-shadow(1px 1px 15px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(2% 2% 15px rgba(151, 145, 145, 0.5));
+    filter: drop-shadow(2% 2% 15px rgba(0, 0, 0, 0.5));
 
     max-width: 40vw;
     max-height: 40vh;
@@ -79,11 +113,12 @@ body {
 #daveTextBox {
     padding: 0 0.5rem;
     outline: none;
-    width: 16rem;
-    height: 2rem;
+    font-size: 1.5vh;
+    width: 20vw;
+    height: 3vh;
 
     border: 0 transparent;
-    border-bottom: 2px solid gray;
+    border-bottom: 1px solid gray;
 
     opacity: 0;
     visibility: hidden;
@@ -100,8 +135,8 @@ body {
     background-position: center;
     background-repeat: no-repeat;
 
-    bottom: 5vh; 
-    padding: 3rem 2rem;
+    bottom: 1rem; 
+    padding: 2vw 3vh;
     cursor: pointer;
 }
 
@@ -114,6 +149,16 @@ body {
     top: 5vh;
     padding: 3rem 2rem;
     cursor: pointer;
+}
+
+#btnBasementLeft {
+    color: black;
+    padding: 1vw 1vh;
+    bottom: 31vh;
+    left: 10vw;
+
+    cursor: pointer;
+    border: 2px solid red;
 }
 
 /* Keyframes */

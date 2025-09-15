@@ -14,6 +14,10 @@ Can be found by going to the Basement and clicking the ? Book, causing you to be
 When clicked multiple times, you break it and it explodes, causing you to die (aka, the page closes).  
 When the user comes back to the scene, the wizard will remember you and ask why you broke the crystal.  
 The book will no longer be clickable next time you go to the basement.
+## 4. Outside
+This is going to be an alternative, of clicking a link and going to someone elses scene
+## 5. Attic
+You can find lore about the Unstable Crystal, hints to the location.
 # Scrapped Ideas
 1. The last 10 questions get sent to my servers and will be showed in some sort of "leaderboard" - Scrapped as outside pings aren't allowed
 2. 
