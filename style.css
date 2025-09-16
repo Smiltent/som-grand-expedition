@@ -16,21 +16,18 @@ body {
     background-color: black;
 }
 
-/* Locations (Layers) */
-/* .location {
-    position: relative;
-    display: inline-block;
-    max-width: 100vw;
-    max-height: 100vh;
-    width: auto;
-    height: auto;
+.hidden {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
 
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-} */
+    height: 0;
+    width: 0;
+}
 
+/*                        */
+/*   Locations (Layers)   */
+/*                        */
 .location {
     display: flex;
     justify-content: center;
@@ -44,8 +41,6 @@ body {
 
 .location > *:not(.locationBgImg) {
     position: absolute;
-    object-fit: cover;
-
     z-index: 1;
 }
 
@@ -61,19 +56,9 @@ body {
     z-index: -1;
 }
 
-.center-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;    
-    justify-content: center;  
-
-}
-
-.daveContainer {
-    display: flex;
-    flex-direction: column;
-}
-
+/*                       */
+/*     Dave Location     */
+/*                       */
 #daveLoc {
     opacity: 1;
     transition: opacity 2s;
@@ -88,21 +73,20 @@ body {
 
     text-align: center;
 
-    height: auto;
-    max-height: 4vh;
-
-    padding-bottom: 1rem;
     color: white;
+
+    transform: translateX(0) translateY(calc(100vh*-0.28));
 }
 
 #daveCharacter {
-    filter: drop-shadow(2% 2% 15px rgba(151, 145, 145, 0.5));
-    filter: drop-shadow(2% 2% 15px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(1vw 1vh 15px rgba(151, 145, 145, 0.5));
+    filter: drop-shadow(1vw 1vh 15px rgba(0, 0, 0, 0.5));
 
-    max-width: 40vw;
-    max-height: 40vh;
+    height: 45%;
+
     width: auto;
-    height: auto;
+    min-width: unset;
+    max-width: 100vw;
 
     opacity: 0;
     animation: fadeIn 4s forwards;
@@ -111,14 +95,11 @@ body {
 }
 
 #daveTextBox {
-    padding: 0 0.5rem;
     outline: none;
-    font-size: 1.5vh;
-    width: 20vw;
-    height: 3vh;
+    font-size: calc(100vh * 0.02);
 
-    border: 0 transparent;
-    border-bottom: 1px solid gray;
+    border: 2px solid red;
+    /* border: 0 transparent; */
 
     opacity: 0;
     visibility: hidden;
@@ -126,44 +107,99 @@ body {
 
     color: white;
     background-color: transparent;
+
+    transform: translateX(0) translateY(calc(100vh*0.27));
 }
 
-/* Buttons */
-#btnDownstairs {
+/*             */
+/*   Buttons   */
+/*             */
+.btnUp {
+    background-image: url("/assets/other/up.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    transform: translateX(0) translateY(calc(100vh*-0.43));
+    padding: calc(100vh*0.061) calc(100vh*0.061);
+    cursor: pointer;
+}
+
+.btnDown {
     background-image: url("/assets/other/down.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 
-    bottom: 1rem; 
-    padding: 2vw 3vh;
+    transform: translateX(0) translateY(calc(100vh*0.43));
+    padding: calc(100vh*0.062) calc(100vh*0.062);
     cursor: pointer;
 }
 
-#btnUpstairs {
-    background-image: url("/assets/other/up.png");
+.btnLeft {
+    background-image: url("/assets/other/left.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    
-    top: 5vh;
-    padding: 3rem 2rem;
+
+    left: 1rem; 
+    padding: calc(100vw*0.04) calc(100vw*0.04);
     cursor: pointer;
 }
 
-#btnBasementLeft {
-    color: black;
-    padding: 1vw 1vh;
-    bottom: 31vh;
-    left: 10vw;
+.btnRight {
+    background-image: url("/assets/other/right.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
+    right: 1rem; 
+    padding: calc(100vw*0.04) calc(100vw*0.04);
     cursor: pointer;
-    border: 2px solid red;
 }
 
 /* Keyframes */
 @keyframes fadeIn {
     to {
         opacity: 1;
+    }
+}
+
+/* Media Tags */
+@media screen and (max-aspect-ratio: 25/18) {
+    #daveText {
+        font-size: 2.2vw;
+        transform: translateX(0) translateY(calc(100vw*-0.218));
+    }
+
+    #daveCharacter {
+        height: auto;
+        width: 36%;
+        min-height: unset;
+        max-height: 100vh;
+    }
+
+    #daveTextBox {
+        font-size: calc(100vw * 0.0144);
+        transform: translateX(0) translateY(calc(100vw*0.195));
+    }
+
+    /*             */
+    /*   Buttons   */
+    /*             */
+
+    .btnUp {
+        transform: translateX(0) translateY(calc(100vw*-0.31));
+        padding: calc(100vw*0.04) calc(100vw*0.04);
+    }
+    .btnDown {
+        transform: translateX(0) translateY(calc(100vw*0.31));
+        padding: calc(100vw*0.04) calc(100vw*0.04);
+    }
+    .btnLeft {
+    
+    }
+    .btnRight {
+    
     }
 }
