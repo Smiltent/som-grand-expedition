@@ -1,5 +1,5 @@
 
-// location System
+// location system
 const locations = [
     {"name": "daveLocation"},
     {"name": "atticLocation"},
@@ -12,7 +12,7 @@ const locations = [
 ]
 var currentLocation = "daveLocation"
 
-// dave Texts on start
+// dave texts on start
 const initText = [
     {"t": "didnt ask lmao!", "to": 500},
     {"t": "come in my crib tho", "to": 1000},
@@ -24,6 +24,7 @@ const initText = [
     {"t": "you can click on me to talk if you want", "to": 100, click: true}
 ]
 
+// dave texts on start after the crystal explotion of 87'
 const initTextAfterExplsion = [
     {"t": "didnt ask lmao!", "to": 500},
     {"t": "come in my crib tho", "to": 1000},
@@ -56,10 +57,10 @@ var crystalLocation = document.getElementById("crystalLocation")
 var hobbitLocation = document.getElementById("hobbitLocation") 
 
 //// parent elements of daveLocation
-var daveText = document.getElementById("daveText") // Dave Text (above)
-var daveImage = document.getElementById("daveCharacter") // Dave Image (center)
+var daveText = document.getElementById("daveText")
+var daveImage = document.getElementById("daveCharacter")
 
-// Delay Function
+// delay function
 async function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms))
 }
@@ -80,6 +81,7 @@ function daveTextAnimation(t, speed) {
         if (text === "," || text === "!" || text === "?") { speedMod += 100 } // if theres punctuation, add longer delay
 
         // If allow is true, dont continue. Else, continue
+        // ^^ Future Smil here, what did past Smil write above? 
         if (!allow || index >= t.length) {
             allow = false
         } else {
@@ -95,6 +97,7 @@ function daveTextAnimation(t, speed) {
 async function changeLocation(to) {
     if (!locations.some(e => e.name === to)) return
     transitionLocation.classList.remove("hidden")
+    transitionLocation.style.visibility = "visible"
 
     await delay(1000)
     document.getElementById(currentLocation).classList.add("hidden")
@@ -103,13 +106,15 @@ async function changeLocation(to) {
 
     await delay(1000)
     transitionLocation.classList.add("hidden")
+    await delay(1000)
+    transitionLocation.style.visibility = "hidden"
 }
 
 // On Load
 // the... uhh.. 🤔 (i forgor) uhm.. thing!!
 window.addEventListener('DOMContentLoaded', async () => {
     var text = "Ask me anything..."
-    var textSpeed = 1
+    var textSpeed = 120
 
     await delay(3000)
     daveTextAnimation(text, textSpeed)
@@ -155,7 +160,7 @@ document.getElementById("daveTextBox").addEventListener("keydown", async functio
 
                 if (e.bg) { 
                     document.getElementById("daveBg").style.visibility = "visible"
-                    document.getElementById("daveBtnDownstairs").style.removeProperty("visibility")
+                    document.querySelectorAll("#daveBtn").forEach(b => b.style.removeProperty("visibility"))
                 }
                 if (e.click) { 
                     allowClickingDave = true 
