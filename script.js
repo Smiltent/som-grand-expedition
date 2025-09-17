@@ -59,6 +59,11 @@ var hobbitLocation = document.getElementById("hobbitLocation")
 var daveText = document.getElementById("daveText") // Dave Text (above)
 var daveImage = document.getElementById("daveCharacter") // Dave Image (center)
 
+// Delay Function
+async function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms))
+}
+
 // Dave Text Animation
 // handling the text animation at the begining of the page
 function daveTextAnimation(t, speed) {
@@ -87,30 +92,31 @@ function daveTextAnimation(t, speed) {
 
 // Location Change Handler
 // handles changing locations when buttons are pressed
-function changeLocation(to) {
+async function changeLocation(to) {
     if (!locations.some(e => e.name === to)) return
-    var loc = locations.find(e => e.name === to)
+    transitionLocation.classList.remove("hidden")
 
+    await delay(1000)
     document.getElementById(currentLocation).classList.add("hidden")
-
     currentLocation = to
     document.getElementById(currentLocation).classList.remove("hidden")
+
+    await delay(1000)
+    transitionLocation.classList.add("hidden")
 }
 
 // On Load
 // the... uhh.. 🤔 (i forgor) uhm.. thing!!
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', async () => {
     var text = "Ask me anything..."
-    var textSpeed = 120
+    var textSpeed = 1
 
-    setTimeout(() => {
-        daveTextAnimation(text, textSpeed)
+    await delay(3000)
+    daveTextAnimation(text, textSpeed)
 
-        setTimeout(() => {
-            document.getElementById("daveTextBox").style.visibility = "visible"
-            document.getElementById("daveTextBox").style.opacity = "1"
-        }, textSpeed * text.length + textSpeed)
-    }, 3000)
+    await delay(textSpeed * text.length + textSpeed)
+    document.getElementById("daveTextBox").style.visibility = "visible"
+    document.getElementById("daveTextBox").style.opacity = "1"
 
     // dotted text animation for transition text
     setInterval(() => {
@@ -126,7 +132,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // On Enter Press in the Question Box
 // handle animations when submitted the question
-document.getElementById("daveTextBox").addEventListener("keydown", function(event) {
+document.getElementById("daveTextBox").addEventListener("keydown", async function(event) {
     const textSpeed = 75
 
     if (event.key === "Enter") {
@@ -142,7 +148,7 @@ document.getElementById("daveTextBox").addEventListener("keydown", function(even
             initText = initTextAfterExplsion
         }
 
-        var delay = 0
+        var delayy = 0
         initText.forEach(e => {
             setTimeout(() => {
                 daveTextAnimation(e.t, textSpeed)
@@ -155,23 +161,23 @@ document.getElementById("daveTextBox").addEventListener("keydown", function(even
                     allowClickingDave = true 
                     daveImage.style.cursor = "pointer"
                 }
-            }, delay)
-            delay += (textSpeed * e.t.length) + e.to
+            }, delayy)
+            delayy += (textSpeed * e.t.length) + e.to
         })
-        setTimeout(() => {
-            document.getElementById("daveTextBox").remove()
-        }, delay)
+
+        await delay(delay)
+        document.getElementById("daveTextBox").remove()
     }
 })
 
 // On Dave Click
 // handle clicking on dave (my bad for forcing him to be clicked)
-daveImage.addEventListener("click", function() {
+daveImage.addEventListener("click", async function() {
     if (allowClickingDave) {
         allowClickingDave = false
         daveImage.style.cursor = "not-allowed"
 
-        daveTextList.then(values => {
+        daveTextList.then(async values => {
             const randomIndex = Math.floor(Math.random() * values.length)
             var text = values[randomIndex]
 
@@ -192,35 +198,10 @@ daveImage.addEventListener("click", function() {
             }
 
             daveTextAnimation(text, 50)
-            setTimeout(() => {
-                allowClickingDave = true
-                daveImage.style.cursor = "pointer"
-            }, text.length * 50)
+
+            await delay(text.length * 50)
+            allowClickingDave = true
+            daveImage.style.cursor = "pointer"
         })
     }
 })
-
-// On Button, change location (formating: btn[locationFrom]_[locationTo])
-// // from main
-// document.getElementById("btnDave_basementA").addEventListener("click", changeLocation("basementLocation"))
-// document.getElementById("btnDave_outsideA").addEventListener("click", changeLocation("outsideLocation"))
-// document.getElementById("btnDave_outsideB").addEventListener("click", changeLocation("outsideLocation"))
-// document.getElementById("btnDave_attic").addEventListener("click", changeLocation("atticLocation"))
-
-// // from basement A
-// document.getElementById("btnBasementA_dave").addEventListener("click", changeLocation("daveLocation"))
-// document.getElementById("btnBasementA_basementB").addEventListener("click", changeLocation("basementBLocation"))
-// document.getElementById("btnBasementA_crystal").addEventListener("click", changeLocation("crystalLocation"))
-// document.getElementById("btnBasementA_hobbit").addEventListener("click", changeLocation("hobbitLocation"))
-
-// // to dave
-// document.getElementById("btnBasementA_dave").addEventListener("click",changeLocation("daveLocation"))
-// document.getElementById("btnOutsideA_dave").addEventListener("click", changeLocation("daveLocation"))
-// document.getElementById("btnOutsideB_dave").addEventListener("click", changeLocation("daveLocation"))
-// document.getElementById("btnAttic_dave").addEventListener("click", changeLocation("daveLocation"))
-
-// // to basement A
-// document.getElementById("btnDave_basementA").addEventListener("click", changeLocation("basementLocation"))
-// document.getElementById("btnBasementB_basementA").addEventListener("click", changeLocation("basementLocation"))
-// document.getElementById("btnCrystal_basementA").addEventListener("click", changeLocation("basementLocation"))
-// document.getElementById("btnHobbit_basementA").addEventListener("click", changeLocation("basementLocation"))

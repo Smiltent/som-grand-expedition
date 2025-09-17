@@ -10,6 +10,7 @@
     <link rel="preload" href="/assets/dave/davenohat.png" as="image">
     <link rel="preload" href="/assets/dave/daveonlyhat.png" as="image">
 
+    <link rel="preload" href="/assets/locations/0_empty.png" as="image">
     <link rel="preload" href="/assets/locations/1_main.png" as="image">
     <link rel="preload" href="/assets/locations/2_basement.png" as="image">
     <link rel="preload" href="/assets/locations/3_crystal.png" as="image">
@@ -34,8 +35,10 @@
     <!-- If you wish to not be spoiled, do not view the files!-->
     <div class="container">
         <!-- Transition -->
-        <div class="notStartingLocation location" id="transitionLocation">
+        <div class="hidden location" id="transitionLocation">
             <p>Loading<span id="transitionDottedText">...</span></p>
+
+            <img class="locationBgImg" src="/assets/locations/0_empty.png" alt="bg">
         </div>
 
         <!-- Main -->

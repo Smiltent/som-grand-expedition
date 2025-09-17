@@ -17,12 +17,12 @@ body {
 }
 
 .hidden {
-    display: none;
+    position: absolute;
     opacity: 0;
     visibility: hidden;
 
-    height: 0;
-    width: 0;
+    /* height: 0;
+    width: 0; */
 }
 
 /*                        */
@@ -98,7 +98,9 @@ body {
     outline: none;
     font-size: calc(100vh * 0.02);
 
-    border: 2px solid red;
+    border: 0 transparent;
+    border-bottom: 2px solid gray;
+    padding: 0 5px;
     /* border: 0 transparent; */
 
     opacity: 0;
@@ -109,6 +111,18 @@ body {
     background-color: transparent;
 
     transform: translateX(0) translateY(calc(100vh*0.27));
+}
+
+#transitionLocation {
+    font-family: "Roboto Mono", monospace;
+    font-size: 3vh;
+
+    position: absolute;
+    z-index: 100;
+    color: white;
+    background-color: black;
+
+    transition: opacity 1s;
 }
 
 /*             */
@@ -182,6 +196,10 @@ body {
     #daveTextBox {
         font-size: calc(100vw * 0.0144);
         transform: translateX(0) translateY(calc(100vw*0.195));
+    }
+
+    #transitionLocation {
+        font-size: 2.3vw;
     }
 
     /*             */
