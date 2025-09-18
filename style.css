@@ -196,21 +196,18 @@ body {
 .btnBook {
     transform: translateX(calc(100vh*0.6787)) translateY(calc(100vh*0.044));
     padding: calc(100vh*0.032) calc(100vh*0.016);
-    background-color: orange;
     opacity: 0.5;
 }
 
 .btnBulletinLeft {
     transform: translateX(calc(100vh*-0.325)) translateY(calc(100vh*0.15)) rotate(32deg);
     padding: calc(100vh*0.025) calc(100vh*0.025);
-    background-color: darkred;
     opacity: 0.5;
 }
 
 .btnBulletinRight {
     transform: translateX(calc(100vh*0.32)) translateY(calc(100vh*0.14)) rotate(-50deg);
     padding: calc(100vh*0.025) calc(100vh*0.022);
-    background-color: green;
     opacity: 0.5;
 }
 
@@ -244,6 +241,12 @@ body {
     #transitionLocation {
         font-size: 2.3vw;
     }
+
+    #bulletinBoardContainer {
+        width: calc(100vw*0.535);
+        height: calc(100vw*0.22);
+    }
+
 
     /*             */
     /*   Buttons   */

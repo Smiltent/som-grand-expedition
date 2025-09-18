@@ -115,7 +115,7 @@ async function changeLocation(to) {
 var currentBulletinPage = 0
 async function bulletinPage(a) {
     if (a === "+") {
-        if (currentBulletinPage >= 2) return
+        if (currentBulletinPage >= 3) return
         currentBulletinPage++
     } else if (a === "-") {
         if (currentBulletinPage <= 0) return
