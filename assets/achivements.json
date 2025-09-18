@@ -1,0 +1,18 @@
+{
+    "talked": {
+        "title": "Talked to Dave",
+        "description": "You talked to Dave!"
+    },
+    "crystal": {
+        "title": "Crystal Breaker",
+        "description": "you... destroyed it?"
+    },
+    "chest": {
+        "title": "Treasurer!",
+        "description": "Opened the chest & only got this achivement... L"
+    },
+    "cameBack": {
+        "title": "You Came Back",
+        "description": "Came back to Scene 18!"
+    }
+}

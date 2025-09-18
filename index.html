@@ -23,10 +23,10 @@
     <link rel="preload" href="/assets/other/right.png" as="image">
     <link rel="stylesheet" href="/style.css">
 
-    <!-- Roboto Mono Font -->
+    <!-- Roboto Mono & Rubik Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <!--   ____ _____ ____  ____  _   -->
@@ -56,10 +56,10 @@
             <img id="daveCharacter" src="/assets/dave/dave.png" alt="Dave the Magical Wizard">
             <input id="daveTextBox" type="text" required placeholder="Type your question here...">
 
-            <div class="btnUp" id="daveBtn" style="visibility: hidden;" onclick="changeLocation('atticLocation')"></div>
-            <div class="btnDown" id="daveBtn" style="visibility: hidden;" onclick="changeLocation('basementALocation')"></div>
-            <div class="btnLeft" id="daveBtn" style="visibility: hidden;" onclick="changeLocation('outsideALocation')"></div>
-            <div class="btnRight" id="daveBtn" style="visibility: hidden;" onclick="changeLocation('outsideBLocation')"></div> 
+            <div class="btn btnUp" id="daveBtn" style="visibility: hidden;" onclick="changeLocation('atticLocation')"></div>
+            <div class="btn btnDown" id="daveBtn" style="visibility: hidden;" onclick="changeLocation('basementALocation')"></div>
+            <div class="btn btnLeft" id="daveBtn" style="visibility: hidden;" onclick="changeLocation('outsideALocation')"></div>
+            <div class="btn btnRight" id="daveBtn" style="visibility: hidden;" onclick="changeLocation('outsideBLocation')"></div> 
 
             <img class="locationBgImg" id="daveBg" style="visibility: hidden;" src="/assets/locations/1_main.png" alt="bg">
         </div>
@@ -76,11 +76,19 @@
 
         <!-- Basement A -->
         <div class="hidden location" id="basementALocation">
-            <div class="btnUp" onclick="changeLocation('daveLocation')"></div>
-            <div class="btnDown" onclick="changeLocation('hobbitLocation')"></div>
-            <div class="btnLeft" onclick="changeLocation('basementBLocation')"></div>
-            <!-- Replace with custom button -->
-            <div class="btnRight" onclick="changeLocation('crystalLocation')"></div> 
+            <div class="btn btnUp" onclick="changeLocation('daveLocation')"></div>
+            <div class="btn btnDown" onclick="changeLocation('hobbitLocation')"></div>
+            <div class="btn btnLeft" onclick="changeLocation('basementBLocation')"></div>
+
+            <div id="bulletinBoardContainer">
+                <h1 id="bulletinBoardTitle">temp</h1>
+                <p id="bulletinBoardDescription">temp</p>
+            </div>
+
+            <div class="btn btnBulletinLeft" onclick="bulletinPage('-')"></div>
+            <div class="btn btnBulletinRight" onclick="bulletinPage('+')"></div>
+
+            <div class="btn btnBook" onclick="changeLocation('crystalLocation')"></div> 
 
             <img class="locationBgImg" src="/assets/locations/2_basementa.png" alt="bg">
         </div>

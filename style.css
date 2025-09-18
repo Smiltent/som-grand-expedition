@@ -125,9 +125,34 @@ body {
     transition: opacity 1s;
 }
 
+/*                      */
+/*   Basement Location  */
+/*                      */
+#bulletinBoardContainer {
+    border: 1px red solid;
+    width: calc(100vh*0.72);
+    height: calc(100vh*0.3);
+    font-family: "Rubik", sans-serif;
+    font-weight: bold;
+    h1 {
+        font-weight: bold;
+        text-align: center;
+        color: orangered;
+        text-shadow: 2px 2px black, 2px 0px black, 0px 2px black, -2px 0px black, 0px -2px black;
+    }
+
+    p {
+        font-weight: 500;
+        color: black;
+    }
+}
+
+
 /*             */
 /*   Buttons   */
 /*             */
+.btn { cursor: pointer }
+
 .btnUp {
     background-image: url("/assets/other/up.png");
     background-size: cover;
@@ -135,8 +160,7 @@ body {
     background-repeat: no-repeat;
 
     transform: translateX(0) translateY(calc(100vh*-0.43));
-    padding: calc(100vh*0.061) calc(100vh*0.061);
-    cursor: pointer;
+    padding: calc(100vh*0.057) calc(100vh*0.057);
 }
 
 .btnDown {
@@ -146,8 +170,7 @@ body {
     background-repeat: no-repeat;
 
     transform: translateX(0) translateY(calc(100vh*0.43));
-    padding: calc(100vh*0.062) calc(100vh*0.062);
-    cursor: pointer;
+    padding: calc(100vh*0.057) calc(100vh*0.057);
 }
 
 .btnLeft {
@@ -156,9 +179,8 @@ body {
     background-position: center;
     background-repeat: no-repeat;
 
-    left: 1rem; 
-    padding: calc(100vw*0.04) calc(100vw*0.04);
-    cursor: pointer;
+    transform: translateX(calc(100vh*-0.625)) translateY(0);
+    padding: calc(100vh*0.057) calc(100vh*0.057);
 }
 
 .btnRight {
@@ -167,10 +189,31 @@ body {
     background-position: center;
     background-repeat: no-repeat;
 
-    right: 1rem; 
-    padding: calc(100vw*0.04) calc(100vw*0.04);
-    cursor: pointer;
+    transform: translateX(calc(100vh*0.625)) translateY(0);
+    padding: calc(100vh*0.057) calc(100vh*0.057);
 }
+
+.btnBook {
+    transform: translateX(calc(100vh*0.6787)) translateY(calc(100vh*0.044));
+    padding: calc(100vh*0.032) calc(100vh*0.016);
+    background-color: orange;
+    opacity: 0.5;
+}
+
+.btnBulletinLeft {
+    transform: translateX(calc(100vh*-0.325)) translateY(calc(100vh*0.15)) rotate(32deg);
+    padding: calc(100vh*0.025) calc(100vh*0.025);
+    background-color: darkred;
+    opacity: 0.5;
+}
+
+.btnBulletinRight {
+    transform: translateX(calc(100vh*0.32)) translateY(calc(100vh*0.14)) rotate(-50deg);
+    padding: calc(100vh*0.025) calc(100vh*0.022);
+    background-color: green;
+    opacity: 0.5;
+}
+
 
 /* Keyframes */
 @keyframes fadeIn {
@@ -182,13 +225,13 @@ body {
 /* Media Tags */
 @media screen and (max-aspect-ratio: 25/18) {
     #daveText {
-        font-size: 2.2vw;
-        transform: translateX(0) translateY(calc(100vw*-0.218));
+        font-size: 2.1vw;
+        transform: translateX(0) translateY(calc(100vw*-0.2));
     }
 
     #daveCharacter {
         height: auto;
-        width: 36%;
+        width: 32%;
         min-height: unset;
         max-height: 100vh;
     }
@@ -215,9 +258,26 @@ body {
         padding: calc(100vw*0.04) calc(100vw*0.04);
     }
     .btnLeft {
-    
+        transform: translateX(calc(100vw*-0.45)) translateY(0);
+        padding: calc(100vw*0.04) calc(100vw*0.04);
     }
     .btnRight {
-    
+        transform: translateX(calc(100vw*0.45)) translateY(0);
+        padding: calc(100vw*0.04) calc(100vw*0.04);
+    }
+
+    .btnBook {
+        transform: translateX(calc(100vw*0.488)) translateY(calc(100vw*0.032));
+        padding: calc(100vw*0.023) calc(100vw*0.011);
+    }
+
+    .btnBulletinLeft {
+        transform: translateX(calc(100vw*-0.233)) translateY(calc(100vw*0.11)) rotate(32deg);
+        padding: calc(100vw*0.02) calc(100vw*0.02);
+    }
+
+    .btnBulletinRight {
+        transform: translateX(calc(100vw*0.23)) translateY(calc(100vw*0.10)) rotate(-48deg);
+        padding: calc(100vw*0.02) calc(100vw*0.016);
     }
 }

@@ -43,7 +43,8 @@ const initTextAfterExplsion = [
 var allowClickingDave = false
 
 // json object list with dave's responces
-var daveTextList = fetch("/assets/text.json").then(response => response.json())
+var daveTextList
+var bulletinBoardTextList
 
 // location elements
 var transitionLocation = document.getElementById("transitionLocation") 
@@ -110,9 +111,28 @@ async function changeLocation(to) {
     transitionLocation.style.visibility = "hidden"
 }
 
+// Bulletin Page Handler
+var currentBulletinPage = 0
+async function bulletinPage(a) {
+    if (a === "+") {
+        if (currentBulletinPage >= 2) return
+        currentBulletinPage++
+    } else if (a === "-") {
+        if (currentBulletinPage <= 0) return
+        currentBulletinPage--
+    }
+
+    var data = await bulletinBoardTextList[currentBulletinPage]
+    document.getElementById("bulletinBoardTitle").innerText = data.title
+    document.getElementById("bulletinBoardDescription").innerText = data.description
+}
+
 // On Load
 // the... uhh.. 🤔 (i forgor) uhm.. thing!!
 window.addEventListener('DOMContentLoaded', async () => {
+    daveTextList = await fetch("/assets/text.json").then(response => response.json())
+    bulletinBoardTextList = await fetch("/assets/bulletin.json").then(response => response.json())
+
     var text = "Ask me anything..."
     var textSpeed = 120
 
