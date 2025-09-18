@@ -129,7 +129,6 @@ body {
 /*   Basement Location  */
 /*                      */
 #bulletinBoardContainer {
-    border: 1px red solid;
     width: calc(100vh*0.72);
     height: calc(100vh*0.3);
     font-family: "Rubik", sans-serif;

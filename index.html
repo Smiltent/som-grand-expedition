@@ -6,21 +6,9 @@
     <title>dave the magical wizard</title>
 
     <!-- CSS + Preload Images -->
-    <link rel="preload" href="/assets/dave/dave.png" as="image">
     <link rel="preload" href="/assets/dave/davenohat.png" as="image">
     <link rel="preload" href="/assets/dave/daveonlyhat.png" as="image">
 
-    <link rel="preload" href="/assets/locations/0_empty.png" as="image">
-    <link rel="preload" href="/assets/locations/0_unfinished.png" as="image">
-
-    <link rel="preload" href="/assets/locations/1_main.png" as="image">
-    <link rel="preload" href="/assets/locations/2_basementa.png" as="image">
-    <link rel="preload" href="/assets/locations/3_crystal.png" as="image">
-
-    <link rel="preload" href="/assets/other/up.png" as="image">
-    <link rel="preload" href="/assets/other/down.png" as="image">
-    <link rel="preload" href="/assets/other/left.png" as="image">
-    <link rel="preload" href="/assets/other/right.png" as="image">
     <link rel="stylesheet" href="/style.css">
 
     <!-- Roboto Mono & Rubik Font -->
@@ -47,7 +35,9 @@
         <div class="hidden location" id="atticLocation">
             <div class="btnDown" onclick="changeLocation('daveLocation')"></div>
 
-            <img class="locationBgImg" src="/assets/locations/0_unfinished.png" alt="bg">
+            <img id="atticKey" src="/assets/other/key.png" alt="key (click on me)">
+
+            <img class="locationBgImg" src="/assets/locations/0_attic.png" alt="bg">
         </div>
 
         <!-- Main -->
@@ -66,12 +56,14 @@
 
         <!-- Outside A -->
         <div class="hidden location" id="outsideALocation">
-            <img class="locationBgImg" src="/assets/locations/0_unfinished.png" alt="bg">
+            <div class="btn btnRight" onclick="changeLocation('daveLocation')"></div> 
+            <img class="locationBgImg" src="/assets/locations/2_outsidea.png" alt="bg">
         </div>
 
         <!-- Outside B -->
         <div class="hidden location" id="outsideBLocation">
-            <img class="locationBgImg" src="/assets/locations/0_unfinished.png" alt="bg">
+            <div class="btn btnLeft" onclick="changeLocation('daveLocation')"></div> 
+            <img class="locationBgImg" src="/assets/locations/3_outsideb.png" alt="bg">
         </div>
 
         <!-- Basement A -->
@@ -90,7 +82,7 @@
 
             <div class="btn btnBook" onclick="changeLocation('crystalLocation')"></div> 
 
-            <img class="locationBgImg" src="/assets/locations/2_basementa.png" alt="bg">
+            <img class="locationBgImg" src="/assets/locations/4_basementa.png" alt="bg">
         </div>
 
         <!-- Basement B -->
@@ -100,12 +92,9 @@
 
         <!-- Crystal -->
         <div class="hidden location" id="crystalLocation">
-            <img class="locationBgImg" src="/assets/locations/0_unfinished.png" alt="bg">
-        </div>
+            <img id="crystal" src="/assets/other/crystal.png" alt="crystal (click on me)">
 
-        <!-- Hobbit -->
-        <div class="hidden location" id="hobbitLocation">
-            <img class="locationBgImg" src="/assets/locations/0_unfinished.png" alt="bg">
+            <img class="locationBgImg" src="/assets/locations/0_empty.png" alt="bg">
         </div>
     </div>
     <script src="/script.js"></script>

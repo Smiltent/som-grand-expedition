@@ -7,8 +7,7 @@ const locations = [
     {"name": "basementBLocation"},
     {"name": "outsideALocation"},
     {"name": "outsideBLocation"},
-    {"name": "crystalLocation"},
-    {"name": "hobbitLocation"}
+    {"name": "crystalLocation"}
 ]
 var currentLocation = "daveLocation"
 
@@ -55,7 +54,6 @@ var outsideALocation = document.getElementById("outsideALocation")
 var outsideBLocation = document.getElementById("outsideBLocation") 
 var atticLocation = document.getElementById("atticLocation") 
 var crystalLocation = document.getElementById("crystalLocation") 
-var hobbitLocation = document.getElementById("hobbitLocation") 
 
 //// parent elements of daveLocation
 var daveText = document.getElementById("daveText")
@@ -132,6 +130,11 @@ async function bulletinPage(a) {
 window.addEventListener('DOMContentLoaded', async () => {
     daveTextList = await fetch("/assets/text.json").then(response => response.json())
     bulletinBoardTextList = await fetch("/assets/bulletin.json").then(response => response.json())
+
+    // bulleting board init
+    var data = await bulletinBoardTextList[0]
+    document.getElementById("bulletinBoardTitle").innerText = data.title
+    document.getElementById("bulletinBoardDescription").innerText = data.description
 
     var text = "Ask me anything..."
     var textSpeed = 120
