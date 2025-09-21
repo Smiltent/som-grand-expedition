@@ -20,9 +20,6 @@ body {
     position: absolute;
     opacity: 0;
     visibility: hidden;
-
-    /* height: 0;
-    width: 0; */
 }
 
 /*                        */
@@ -213,19 +210,28 @@ body {
 .btnBook {
     transform: translateX(calc(100vh*0.6787)) translateY(calc(100vh*0.044));
     padding: calc(100vh*0.032) calc(100vh*0.016);
-    opacity: 0.5;
 }
 
 .btnBulletinLeft {
     transform: translateX(calc(100vh*-0.325)) translateY(calc(100vh*0.15)) rotate(32deg);
     padding: calc(100vh*0.025) calc(100vh*0.025);
-    opacity: 0.5;
 }
 
 .btnBulletinRight {
     transform: translateX(calc(100vh*0.32)) translateY(calc(100vh*0.14)) rotate(-50deg);
     padding: calc(100vh*0.025) calc(100vh*0.022);
-    opacity: 0.5;
+}
+
+.btnDoor {
+    padding: calc(100vh*0.19) calc(100vh*0.12);
+}
+
+.btnDoorPosLeft {
+    transform: translateX(calc(100vh*-0.55)) translateY(calc(100vh*0.2));
+}
+
+.btnDoorPosRight {
+    transform: translateX(calc(100vh*0.55)) translateY(calc(100vh*0.2));
 }
 
 
@@ -275,7 +281,6 @@ body {
         height: calc(100vw*0.22);
     }
 
-
     /*             */
     /*   Buttons   */
     /*             */
@@ -310,5 +315,17 @@ body {
     .btnBulletinRight {
         transform: translateX(calc(100vw*0.23)) translateY(calc(100vw*0.10)) rotate(-48deg);
         padding: calc(100vw*0.02) calc(100vw*0.016);
+    }
+
+    .btnDoor {
+        padding: calc(100vw*0.13) calc(100vw*0.08);
+    }
+
+    .btnDoorPosLeft {
+        transform: translateX(calc(100vw*-0.39)) translateY(calc(100vw*0.13));
+    }
+
+    .btnDoorPosRight {
+        transform: translateX(calc(100vw*0.39)) translateY(calc(100vw*0.13));
     }
 }
