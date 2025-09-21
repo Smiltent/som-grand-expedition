@@ -9,6 +9,17 @@
     <link rel="preload" href="/assets/dave/davenohat.png" as="image">
     <link rel="preload" href="/assets/dave/daveonlyhat.png" as="image">
 
+    <link rel="preload" href="/assets/locations/6_crystalflashbang.png" as="image">
+
+    <link rel="preload" href="/assets/crystal/critical.ogg" as="audio">
+    <link rel="preload" href="/assets/crystal/explode.mp3" as="audio">
+    <link rel="preload" href="/assets/crystal/flashbang.mp3" as="audio">
+    <link rel="preload" href="/assets/crystal/hit.ogg" as="audio">
+    <link rel="preload" href="/assets/crystal/0.png" as="image">
+    <link rel="preload" href="/assets/crystal/1.png" as="image">
+    <link rel="preload" href="/assets/crystal/2.png" as="image">
+    <link rel="preload" href="/assets/crystal/3.png" as="image">
+
     <link rel="stylesheet" href="/style.css">
 
     <!-- Roboto Mono & Rubik Font -->
@@ -35,7 +46,7 @@
         <div class="hidden location" id="atticLocation">
             <div class="btnDown" onclick="changeLocation('daveLocation')"></div>
 
-            <img id="atticKey" src="/assets/other/key.png" alt="key (click on me)">
+            <img class="btn" id="atticKey" src="/assets/chest/key.png" alt="key (click on me)">
 
             <img class="locationBgImg" src="/assets/locations/0_attic.png" alt="bg">
         </div>
@@ -87,14 +98,23 @@
 
         <!-- Basement B -->
         <div class="hidden location" id="basementBLocation">
-            <img class="locationBgImg" src="/assets/locations/0_unfinished.png" alt="bg">
+            <img style="cursor: not-allowed;" id="basementBChest" src="/assets/chest/chest.png" alt="chest (you need a key)">
+            <div class="btn btnRight" onclick="changeLocation('basementALocation')"></div> 
+
+            <img class="locationBgImg" src="/assets/locations/5_basementb.png" alt="bg">
         </div>
 
         <!-- Crystal -->
         <div class="hidden location" id="crystalLocation">
-            <img id="crystal" src="/assets/other/crystal.png" alt="crystal (click on me)">
+            <img id="crystal" src="/assets/crystal/0.png">
 
-            <img class="locationBgImg" src="/assets/locations/0_empty.png" alt="bg">
+            <div id="crystalText" style="opacity: 0; visibility: hidden;">
+                <p>you died</p>
+                <p>check out other scenes</p>
+                <p><a href="/scenes/31">31</a> | <a href="/scenes/43">43</a> | <a href="/scenes/52">52</a> | <a href="/scenes/70">70</a></p>
+            </div>
+            
+            <img id="crystalBgImg" class="locationBgImg" src="/assets/locations/0_empty.png" alt="bg">
         </div>
     </div>
     <script src="/script.js"></script>

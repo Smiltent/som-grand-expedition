@@ -56,16 +56,32 @@ body {
     z-index: -1;
 }
 
+/*                             */
+/*     Transition Location     */
+/*                             */
+#transitionLocation {
+    font-family: "Roboto Mono", monospace;
+    font-size: 3vh;
+
+    position: absolute;
+    z-index: 100;
+    color: white;
+    background-color: black;
+
+    transition: opacity 1s;
+}
+
+/*                        */
+/*     Attic Location     */
+/*                        */
+#atticKey {
+    width: calc(100vh*0.15);
+    height: calc(100vh*0.15);
+}
+
 /*                       */
 /*     Dave Location     */
 /*                       */
-#daveLoc {
-    opacity: 1;
-    transition: opacity 2s;
-    background-color: black;
-}
-
-/* Assets */
 #daveText {
     text-shadow: 2px 2px black;
     font-family: "Roboto Mono", monospace;
@@ -113,21 +129,18 @@ body {
     transform: translateX(0) translateY(calc(100vh*0.27));
 }
 
-#transitionLocation {
+/*                      */
+/*   Crystal Location   */
+/*                      */
+#crystalText {
     font-family: "Roboto Mono", monospace;
-    font-size: 3vh;
-
-    position: absolute;
-    z-index: 100;
-    color: white;
-    background-color: black;
-
-    transition: opacity 1s;
+    transition: opacity 5s;
+    text-align: center;
 }
 
-/*                      */
-/*   Basement Location  */
-/*                      */
+/*                       */
+/*   Basement Location   */
+/*                       */
 #bulletinBoardContainer {
     width: calc(100vh*0.72);
     height: calc(100vh*0.3);
@@ -146,6 +159,11 @@ body {
     }
 }
 
+#basementBChest {
+    width: calc(100vh*0.4);
+    height: calc(100vh*0.4);
+    transform: translateX(calc(100vh*0.4)) translateY(calc(100vh*0.215));
+}
 
 /*             */
 /*   Buttons   */
@@ -220,6 +238,17 @@ body {
 
 /* Media Tags */
 @media screen and (max-aspect-ratio: 25/18) {
+    #atticKey {
+        width: calc(100vw*0.11);
+        height: calc(100vw*0.11);
+    }
+
+    #basementBChest {
+        width: calc(100vw*0.29);
+        height: calc(100vw*0.29);
+        transform: translateX(calc(100vw*0.29)) translateY(calc(100vw*0.155));
+    }
+
     #daveText {
         font-size: 2.1vw;
         transform: translateX(0) translateY(calc(100vw*-0.2));

@@ -12,7 +12,7 @@ const locations = [
 var currentLocation = "daveLocation"
 
 // dave texts on start
-const initText = [
+var initText = [
     {"t": "didnt ask lmao!", "to": 500},
     {"t": "come in my crib tho", "to": 1000},
     {"t": "theres not much here", "to": 1000, bg: true},
@@ -20,22 +20,21 @@ const initText = [
     {"t": "theres a bulletin board with some info", "to": 1000},
     {"t": "idk why its there, but its pretty cool ngl", "to": 3000},
     {"t": "wait you think i have more to say?", "to": 2800},
-    {"t": "you can click on me to talk if you want", "to": 100, click: true}
+    {"t": "you can click on me to talk", "to": 100, click: true}
 ]
 
 // dave texts on start after the crystal explotion of 87'
 const initTextAfterExplsion = [
     {"t": "didnt ask lmao!", "to": 500},
-    {"t": "come in my crib tho", "to": 1000},
-    {"t": "theres not much here", "to": 100, bg: true},
-    {"t": "wait i know you...", "to": 1000},
-    {"t": "YOU BROKE THE CRYSTAL!!", "to": 1000},
-    {"t": "i cant believe this", "to": 1000},
-    {"t": "because of you, the world reset", "to": 1000},
-    {"t": "good thing i backed up the scene yesterday", "to": 1000},
-    {"t": "but still...", "to": 1000},
-    {"t": "you owe me big time", "to": 3000},
-    {"t": "at this point, do i want to talk to you?", "to": 100, click: true}
+    {"t": "come in my crib-", "to": 50},
+    {"t": "wait a second", "to": 1250},
+    {"t": "i know you!", "to": 1250},
+    {"t": "YOU BROKE THE CRYSTAL!!", "to": 1250},
+    {"t": "i cant believe this", "to": 1250},
+    {"t": "because of you, the world reset", "to": 1250},
+    {"t": "good thing i had a backup of the scene", "to": 1500},
+    {"t": "but still...", "to": 750},
+    {"t": "at this point, do i want to talk to you?", "to": 100, click: true, bg: true}
 ]
 
 // allow clicking dave
@@ -131,13 +130,20 @@ window.addEventListener('DOMContentLoaded', async () => {
     daveTextList = await fetch("/assets/text.json").then(response => response.json())
     bulletinBoardTextList = await fetch("/assets/bulletin.json").then(response => response.json())
 
+    // key init
+    if (localStorage.getItem("sc18_hasKey") === "true") {
+        document.getElementById("atticKey").style.visibility = "hidden"
+        document.getElementById("basementBChest").style.cursor = "pointer"
+    }
+
     // bulleting board init
+    // ^^ Future Smil here, i realised i wrote bulleting lmao
     var data = await bulletinBoardTextList[0]
     document.getElementById("bulletinBoardTitle").innerText = data.title
     document.getElementById("bulletinBoardDescription").innerText = data.description
 
     var text = "Ask me anything..."
-    var textSpeed = 120
+    var textSpeed = 120 // 120
 
     await delay(3000)
     daveTextAnimation(text, textSpeed)
@@ -160,7 +166,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 // On Enter Press in the Question Box
 // handle animations when submitted the question
-document.getElementById("daveTextBox").addEventListener("keydown", async function(event) {
+document.getElementById("daveTextBox").addEventListener("keydown", async (event) => {
     const textSpeed = 75
 
     if (event.key === "Enter") {
@@ -172,7 +178,7 @@ document.getElementById("daveTextBox").addEventListener("keydown", async functio
         event.preventDefault()
         document.getElementById("daveTextBox").style.opacity = "0"
 
-        if (localStorage.getItem("bigBang") === "true") {
+        if (localStorage.getItem("sc18_bigBang") === "true") {
             initText = initTextAfterExplsion
         }
 
@@ -182,7 +188,7 @@ document.getElementById("daveTextBox").addEventListener("keydown", async functio
                 daveTextAnimation(e.t, textSpeed)
 
                 if (e.bg) { 
-                    document.getElementById("daveBg").style.visibility = "visible"
+                    document.getElementById("daveBg").style.removeProperty("visibility")
                     document.querySelectorAll("#daveBtn").forEach(b => b.style.removeProperty("visibility"))
                 }
                 if (e.click) { 
@@ -198,38 +204,85 @@ document.getElementById("daveTextBox").addEventListener("keydown", async functio
     }
 })
 
+// On Click Crystal
+var crystalClicks = 0
+document.getElementById("crystal").addEventListener("click", async () => {
+    crystalClicks++
+    
+    switch (crystalClicks) {
+        case 3:
+            new Audio("/assets/crystal/critical.ogg").play()
+            document.getElementById("crystal").src = "/assets/crystal/1.png"
+        break;
+        case 5:
+            new Audio("/assets/crystal/critical.ogg").play()
+            document.getElementById("crystal").src = "/assets/crystal/2.png"
+        break;
+        case 7, 10:
+            new Audio("/assets/crystal/critical.ogg").play()
+            document.getElementById("crystal").src = "/assets/crystal/3.png"
+        break;
+        case 13:    
+            new Audio("/assets/crystal/explode.mp3").play()
+            await delay(400)
+            document.getElementById("crystal").src = "/assets/crystal/cracked.png"
+
+            await delay(5000)
+            localStorage.setItem("sc18_bigBang", "true")
+            new Audio("/assets/crystal/flashbang.mp3").play()
+
+            document.getElementById("crystal").src = ""
+            document.getElementById("crystalBgImg").src = "/assets/locations/6_crystalflashbang.png"
+            await delay(4300)
+            document.getElementById("crystalText").style.removeProperty("visibility")
+            await delay(100)
+            document.getElementById("crystalText").style.opacity = "1"
+
+            break;
+        default:
+            new Audio("/assets/crystal/hit.ogg").play()
+        break;
+    }
+})
+
+// On Key Click
+document.getElementById("atticKey").addEventListener("click", async () => {
+    document.getElementById("atticKey").style.visibility = "hidden"
+    document.getElementById("basementBChest").style.cursor = "pointer"
+
+    localStorage.setItem("sc18_hasKey", "true")
+})
+
 // On Dave Click
 // handle clicking on dave (my bad for forcing him to be clicked)
-daveImage.addEventListener("click", async function() {
+daveImage.addEventListener("click", async () => {
     if (allowClickingDave) {
         allowClickingDave = false
         daveImage.style.cursor = "not-allowed"
 
-        daveTextList.then(async values => {
-            const randomIndex = Math.floor(Math.random() * values.length)
-            var text = values[randomIndex]
+        const randomIndex = Math.floor(Math.random() * values.length)
+        var text = values[randomIndex]
 
-            if (daveImage.classList.contains("hasHat") || daveImage.classList.contains("hasOnlyHat")) {
-                daveImage.src = "/assets/dave/dave.png"
-                daveImage.classList.remove("hasHat", "hasOnlyHat")
-            }
+        if (daveImage.classList.contains("hasHat") || daveImage.classList.contains("hasOnlyHat")) {
+            daveImage.src = "/assets/dave/dave.png"
+            daveImage.classList.remove("hasHat", "hasOnlyHat")
+        }
 
-            // custom tags handling custom situations
-            if (text.startsWith("<hat>")) {
-                daveImage.src = "/assets/dave/davenohat.png"
-                text = text.replace("<hat>", "").trim()
-                daveImage.classList.add("hasHat")
-            } else if (text.startsWith("<onlyhat>")) {
-                daveImage.src = "/assets/dave/daveonlyhat.png"
-                text = text.replace("<onlyhat>", "").trim()
-                daveImage.classList.add("hasOnlyHat")
-            }
+        // custom tags handling custom situations
+        if (text.startsWith("<hat>")) {
+            daveImage.src = "/assets/dave/davenohat.png"
+            text = text.replace("<hat>", "").trim()
+            daveImage.classList.add("hasHat")
+        } else if (text.startsWith("<onlyhat>")) {
+            daveImage.src = "/assets/dave/daveonlyhat.png"
+            text = text.replace("<onlyhat>", "").trim()
+            daveImage.classList.add("hasOnlyHat")
+        }
 
-            daveTextAnimation(text, 50)
+        daveTextAnimation(text, 50)
 
-            await delay(text.length * 50)
-            allowClickingDave = true
-            daveImage.style.cursor = "pointer"
-        })
+        await delay(text.length * 50)
+        allowClickingDave = true
+        daveImage.style.cursor = "pointer"
     }
 })

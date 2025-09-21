@@ -1,18 +1,10 @@
 [
     {
-        "title": "1",
-        "description": "AHHH PAGE 1"
+        "title": "Information",
+        "description": "The style & code for this bulletin board is HORRIBLE!"
     },
     {
-        "title": "2",
-        "description": "page 2???"
-    },
-    {
-        "title": "3",
-        "description": "3!!!!"
-    },
-    {
-        "title": "4",
-        "description": "what is this page? oh, page 4"
+        "title": "Scene",
+        "description": "This was built in 14 hours over the span of a few days. There's only one person who lives here (guess who). The code for showing the text on Dave gets broken when you tab out or go to another window."
     }
 ]
