@@ -46,7 +46,8 @@
         <div class="hidden location" id="atticLocation">
             <div class="btnDown" onclick="changeLocation('daveLocation')"></div>
 
-            <img class="btn" id="atticKey" src="/assets/chest/key.png" alt="key (click on me)">
+            <img id="atticKey" src="/assets/chest/key.png" alt="key (click on me)">
+            <div class="btnArrow btnDown" onclick="changeLocation('daveLocation')"></div>
 
             <img class="locationBgImg" src="/assets/locations/0_attic.png" alt="bg">
         </div>
@@ -57,39 +58,38 @@
             <img id="daveCharacter" src="/assets/dave/dave.png" alt="Dave the Magical Wizard">
             <input id="daveTextBox" type="text" required placeholder="Type your question here...">
 
-            <div class="btn btnUp" id="daveBtn" style="visibility: hidden;" onclick="changeLocation('atticLocation')"></div>
-            <div class="btn btnDown" id="daveBtn" style="visibility: hidden;" onclick="changeLocation('basementALocation')"></div>
-            <div class="btn btnLeft" id="daveBtn" style="visibility: hidden;" onclick="changeLocation('outsideALocation')"></div>
-            <div class="btn btnRight" id="daveBtn" style="visibility: hidden;" onclick="changeLocation('outsideBLocation')"></div> 
+            <div class="btnArrow btnUp" id="daveBtn" style="visibility: hidden;" onclick="changeLocation('atticLocation')"></div>
+            <div class="btnArrow btnDown" id="daveBtn" style="visibility: hidden;" onclick="changeLocation('basementALocation')"></div>
+            <div class="btnArrow btnLeft" id="daveBtn" style="visibility: hidden;" onclick="changeLocation('outsideALocation')"></div>
+            <div class="btnArrow btnRight" id="daveBtn" style="visibility: hidden;" onclick="changeLocation('outsideBLocation')"></div> 
 
             <img class="locationBgImg" id="daveBg" style="visibility: hidden;" src="/assets/locations/1_main.png" alt="bg">
         </div>
 
         <!-- Outside A -->
         <div class="hidden location" id="outsideALocation">
-            <div class="btn btnDoor btnDoorPosRight" onclick="changeLocation('daveLocation')"></div> 
+            <div class="btnDoor btnDoorPosRight" onclick="changeLocation('daveLocation')"></div> 
             <img class="locationBgImg" src="/assets/locations/2_outsidea.png" alt="bg">
         </div>
 
         <!-- Outside B -->
         <div class="hidden location" id="outsideBLocation">
-            <div class="btn btnDoor btnDoorPosLeft" onclick="changeLocation('daveLocation')"></div> 
+            <div class="btnDoor btnDoorPosLeft" onclick="changeLocation('daveLocation')"></div> 
             <img class="locationBgImg" src="/assets/locations/3_outsideb.png" alt="bg">
         </div>
 
         <!-- Basement A -->
         <div class="hidden location" id="basementALocation">
-            <div class="btn btnUp" onclick="changeLocation('daveLocation')"></div>
-            <div class="btn btnDown" onclick="changeLocation('hobbitLocation')"></div>
-            <div class="btn btnLeft" onclick="changeLocation('basementBLocation')"></div>
+            <div class="btnArrow btnUp" onclick="changeLocation('daveLocation')"></div>
+            <div class="btnArrow btnLeft" onclick="changeLocation('basementBLocation')"></div>
 
             <div id="bulletinBoardContainer">
                 <h1 id="bulletinBoardTitle">temp</h1>
                 <p id="bulletinBoardDescription">temp</p>
             </div>
 
-            <div class="btn btnBulletinLeft" onclick="bulletinPage('-')"></div>
-            <div class="btn btnBulletinRight" onclick="bulletinPage('+')"></div>
+            <div class="btnBulletinLeft" onclick="bulletinPage('-')"></div>
+            <div class="btnBulletinRight" onclick="bulletinPage('+')"></div>
 
             <div class="btnBook" onclick="changeLocation('crystalLocation')"></div> 
 
@@ -99,7 +99,7 @@
         <!-- Basement B -->
         <div class="hidden location" id="basementBLocation">
             <img style="cursor: not-allowed;" id="basementBChest" src="/assets/chest/chest.png" alt="chest (you need a key)">
-            <div class="btn btnRight" onclick="changeLocation('basementALocation')"></div> 
+            <div class="btnArrow btnRight" onclick="changeLocation('basementALocation')"></div> 
 
             <img class="locationBgImg" src="/assets/locations/5_basementb.png" alt="bg">
         </div>

@@ -13,28 +13,28 @@ var currentLocation = "daveLocation"
 
 // dave texts on start
 var initText = [
-    {"t": "didnt ask lmao!", "to": 500},
-    {"t": "come in my crib tho", "to": 1000},
-    {"t": "theres not much here", "to": 1000, bg: true},
-    {"t": "but if you go downstairs", "to": 1000},
-    {"t": "theres a bulletin board with some info", "to": 1000},
-    {"t": "idk why its there, but its pretty cool ngl", "to": 3000},
-    {"t": "wait you think i have more to say?", "to": 2800},
-    {"t": "you can click on me to talk", "to": 100, click: true}
+    {"text": "didnt ask lmao!", "wait": 750},
+    {"text": "come in my crib tho", bg: true},
+    {"text": "theres not much here"},
+    {"text": "but if you go downstairs"},
+    {"text": "theres a bulletin board with some info"},
+    {"text": "idk why its there, but its pretty cool", "wait": 1200},
+    {"text": "wait you think i have more to say?", "wait": 3500},
+    {"text": "you can click on me to talk", click: true}
 ]
 
 // dave texts on start after the crystal explotion of 87'
 const initTextAfterExplsion = [
-    {"t": "didnt ask lmao!", "to": 500},
-    {"t": "come in my crib-", "to": 50},
-    {"t": "wait a second", "to": 1250},
-    {"t": "i know you!", "to": 1250},
-    {"t": "YOU BROKE THE CRYSTAL!!", "to": 1250},
-    {"t": "i cant believe this", "to": 1250},
-    {"t": "because of you, the world reset", "to": 1250},
-    {"t": "good thing i had a backup of the scene", "to": 1500},
-    {"t": "but still...", "to": 750},
-    {"t": "at this point, do i want to talk to you?", "to": 100, click: true, bg: true}
+    {"text": "didnt ask lmao!", "wait": 750},
+    {"text": "come in my crib-", "wait": 50},
+    {"text": "wait a second", "wait": 500},
+    {"text": "i know you!", "wait": 500},
+    {"text": "YOU BROKE THE CRYSTAL!!", "speed": 50, "wait": 1250},
+    {"text": "i cant believe this"},
+    {"text": "because of you, the world reset"},
+    {"text": "good thing i had a backup of the scene", "wait": 1500},
+    {"text": "but still...", "wait": 500},
+    {"text": "at this point, do i want to talk to you?", click: true, bg: true}
 ]
 
 // allow clicking dave
@@ -43,16 +43,6 @@ var allowClickingDave = false
 // json object list with dave's responces
 var daveTextList
 var bulletinBoardTextList
-
-// location elements
-var transitionLocation = document.getElementById("transitionLocation") 
-var daveLocation = document.getElementById("daveLocation") 
-var basementALocation = document.getElementById("basementALocation") 
-var basementBLocation = document.getElementById("basementBLocation") 
-var outsideALocation = document.getElementById("outsideALocation") 
-var outsideBLocation = document.getElementById("outsideBLocation") 
-var atticLocation = document.getElementById("atticLocation") 
-var crystalLocation = document.getElementById("crystalLocation") 
 
 //// parent elements of daveLocation
 var daveText = document.getElementById("daveText")
@@ -65,33 +55,56 @@ async function delay(ms) {
 
 // Dave Text Animation
 // handling the text animation at the begining of the page
-function daveTextAnimation(t, speed) {
-    var index = 0
-    var allow = true
-    daveText.innerHTML = ""
+var daveTextqueue = []
+var isDaveTextPlaying = false
 
-    // create an internal function, that handles the typing mechanism
-    function type() {
-        var text = t.charAt(index++)
-        var speedMod = speed
+function queueDaveText({ text, speed = 100, wait = 1000 }) {
+    daveTextqueue.push({ text, speed, wait })
+    playDaveTextQueue()
 
-        daveText.innerHTML += text
-        if (text === "," || text === "!" || text === "?") { speedMod += 100 } // if theres punctuation, add longer delay
+    return text.length * speed + wait
+}
 
-        // If allow is true, dont continue. Else, continue
-        // ^^ Future Smil here, what did past Smil write above? 
-        if (!allow || index >= t.length) {
-            allow = false
-        } else {
-            setTimeout(type, speedMod)
-        }
+async function playDaveTextQueue() {
+    if (isDaveTextPlaying || daveTextqueue.length === 0) return
+
+    isDaveTextPlaying = true
+
+    while (daveTextqueue.length > 0) {
+        const item = daveTextqueue.shift()
+        await daveTextAnimation(item.text, item.speed)
+        await delay(item.wait || 0)
     }
 
-    type()
+    isDaveTextPlaying = false
 }
+
+function daveTextAnimation(text, speed) {
+    return new Promise(resolve => {
+        var index = 0
+        daveText.innerHTML = ""
+
+        function type() {
+            var textt = text.charAt(index++)
+            var speedModifier = speed
+
+            daveText.innerHTML += textt
+            if (textt === "," || textt === "!" || textt === "?") { speedModifier += 100 }
+
+            if (index >= text.length) {
+                resolve()
+            } else {
+                setTimeout(type, speedModifier)
+            }
+        }
+
+        type()
+    })
+} 
 
 // Location Change Handler
 // handles changing locations when buttons are pressed
+var transitionLocation = document.getElementById("transitionLocation")
 async function changeLocation(to) {
     if (!locations.some(e => e.name === to)) return
     transitionLocation.classList.remove("hidden")
@@ -142,13 +155,10 @@ window.addEventListener('DOMContentLoaded', async () => {
     document.getElementById("bulletinBoardTitle").innerText = data.title
     document.getElementById("bulletinBoardDescription").innerText = data.description
 
-    var text = "Ask me anything..."
-    var textSpeed = 120 // 120
-
     await delay(3000)
-    daveTextAnimation(text, textSpeed)
+    await delay(queueDaveText({ "text": "Ask me anything...", "speed": 120, "wait": 100 }))
 
-    await delay(textSpeed * text.length + textSpeed)
+    // await delay(textSpeed * text.length + textSpeed)
     document.getElementById("daveTextBox").style.visibility = "visible"
     document.getElementById("daveTextBox").style.opacity = "1"
 
@@ -167,8 +177,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 // On Enter Press in the Question Box
 // handle animations when submitted the question
 document.getElementById("daveTextBox").addEventListener("keydown", async (event) => {
-    const textSpeed = 75
-
     if (event.key === "Enter") {
         if (!document.getElementById("daveTextBox").value.endsWith("?")) {
             daveTextAnimation("Thats not a question...", 120)
@@ -182,24 +190,19 @@ document.getElementById("daveTextBox").addEventListener("keydown", async (event)
             initText = initTextAfterExplsion
         }
 
-        var delayy = 0
-        initText.forEach(e => {
-            setTimeout(() => {
-                daveTextAnimation(e.t, textSpeed)
+        for (const e of initText) {
+            await delay(queueDaveText({ text: e.text, speed: 75, wait: e.wait }))
 
-                if (e.bg) { 
-                    document.getElementById("daveBg").style.removeProperty("visibility")
-                    document.querySelectorAll("#daveBtn").forEach(b => b.style.removeProperty("visibility"))
-                }
-                if (e.click) { 
-                    allowClickingDave = true 
-                    daveImage.style.cursor = "pointer"
-                }
-            }, delayy)
-            delayy += (textSpeed * e.t.length) + e.to
-        })
+            if (e.bg) { 
+                document.getElementById("daveBg").style.removeProperty("visibility")
+                document.querySelectorAll("#daveBtn").forEach(b => b.style.removeProperty("visibility"))
+            }
+            if (e.click) { 
+                allowClickingDave = true 
+                daveImage.style.cursor = "pointer"
+            }
+        }
 
-        await delay(delay)
         document.getElementById("daveTextBox").remove()
     }
 })
@@ -260,8 +263,8 @@ daveImage.addEventListener("click", async () => {
         allowClickingDave = false
         daveImage.style.cursor = "not-allowed"
 
-        const randomIndex = Math.floor(Math.random() * values.length)
-        var text = values[randomIndex]
+        const randomIndex = Math.floor(Math.random() * daveTextList.length)
+        var text = daveTextList[randomIndex]
 
         if (daveImage.classList.contains("hasHat") || daveImage.classList.contains("hasOnlyHat")) {
             daveImage.src = "/assets/dave/dave.png"
@@ -279,9 +282,8 @@ daveImage.addEventListener("click", async () => {
             daveImage.classList.add("hasOnlyHat")
         }
 
-        daveTextAnimation(text, 50)
+        await delay(queueDaveText({ text: text, speed: 125 }))
 
-        await delay(text.length * 50)
         allowClickingDave = true
         daveImage.style.cursor = "pointer"
     }

@@ -72,6 +72,7 @@ body {
 /*     Attic Location     */
 /*                        */
 #atticKey {
+    cursor: pointer;
     width: calc(100vh*0.15);
     height: calc(100vh*0.15);
 }
@@ -165,46 +166,46 @@ body {
 /*             */
 /*   Buttons   */
 /*             */
-.btn { cursor: pointer }
-
-.btnUp {
-    background-image: url("/assets/other/up.png");
+.btnArrow { 
+    cursor: pointer;
+    background-image: url("/assets/other/arrow.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 
-    transform: translateX(0) translateY(calc(100vh*-0.43));
     padding: calc(100vh*0.057) calc(100vh*0.057);
+}
+
+.btnYellowArrow { 
+    cursor: pointer;
+    background-image: url("/assets/other/arrow-yellow.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.btnBlueArrow { 
+    cursor: pointer;
+    background-image: url("/assets/other/arrow-blue.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.btnUp {
+    transform: translateX(0) translateY(calc(100vh*-0.43));
 }
 
 .btnDown {
-    background-image: url("/assets/other/down.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    transform: translateX(0) translateY(calc(100vh*0.43));
-    padding: calc(100vh*0.057) calc(100vh*0.057);
+    transform: translateX(0) translateY(calc(100vh*0.43)) rotate(180deg);
 }
 
 .btnLeft {
-    background-image: url("/assets/other/left.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    transform: translateX(calc(100vh*-0.625)) translateY(0);
-    padding: calc(100vh*0.057) calc(100vh*0.057);
+    transform: translateX(calc(100vh*-0.625)) translateY(0) rotate(-90deg);
 }
 
 .btnRight {
-    background-image: url("/assets/other/right.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    transform: translateX(calc(100vh*0.625)) translateY(0);
-    padding: calc(100vh*0.057) calc(100vh*0.057);
+    transform: translateX(calc(100vh*0.625)) translateY(0) rotate(90deg);
 }
 
 .btnBook {
@@ -213,16 +214,19 @@ body {
 }
 
 .btnBulletinLeft {
+    cursor: pointer;
     transform: translateX(calc(100vh*-0.325)) translateY(calc(100vh*0.15)) rotate(32deg);
     padding: calc(100vh*0.025) calc(100vh*0.025);
 }
 
 .btnBulletinRight {
+    cursor: pointer;
     transform: translateX(calc(100vh*0.32)) translateY(calc(100vh*0.14)) rotate(-50deg);
     padding: calc(100vh*0.025) calc(100vh*0.022);
 }
 
 .btnDoor {
+    cursor: pointer;
     padding: calc(100vh*0.19) calc(100vh*0.12);
 }
 
@@ -285,21 +289,20 @@ body {
     /*   Buttons   */
     /*             */
 
+    .btnArrow {
+        padding: calc(100vw*0.04) calc(100vw*0.04);
+    }
     .btnUp {
         transform: translateX(0) translateY(calc(100vw*-0.31));
-        padding: calc(100vw*0.04) calc(100vw*0.04);
     }
     .btnDown {
-        transform: translateX(0) translateY(calc(100vw*0.31));
-        padding: calc(100vw*0.04) calc(100vw*0.04);
+        transform: translateX(0) translateY(calc(100vw*0.31)) rotate(180deg);
     }
     .btnLeft {
-        transform: translateX(calc(100vw*-0.45)) translateY(0);
-        padding: calc(100vw*0.04) calc(100vw*0.04);
+        transform: translateX(calc(100vw*-0.45)) translateY(0) rotate(-90deg);
     }
     .btnRight {
-        transform: translateX(calc(100vw*0.45)) translateY(0);
-        padding: calc(100vw*0.04) calc(100vw*0.04);
+        transform: translateX(calc(100vw*0.45)) translateY(0) rotate(90deg);
     }
 
     .btnBook {
