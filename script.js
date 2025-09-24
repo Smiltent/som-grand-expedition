@@ -176,7 +176,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     document.getElementById("bulletinBoardDescription").innerText = data.description
 
     await delay(3000)
-    await delay(queueDaveText({ "text": "Ask me anything...", "speed": 120, "wait": 100 }))
+    await delay(queueDaveText({ text: "Ask me anything...", speed: 120, wait: 100 }))
 
     // await delay(textSpeed * text.length + textSpeed)
     document.getElementById("daveTextBox").style.visibility = "visible"
@@ -202,7 +202,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 document.getElementById("daveTextBox").addEventListener("keydown", async (event) => {
     if (event.key === "Enter") {
         if (!document.getElementById("daveTextBox").value.endsWith("?")) {
-            queueDaveText({ text: "that doesnt look like a question to me", speed: 125 })
+            queueDaveText({ text: "that doesnt look like a question to me", speed: 120 })
             return
         }
 
@@ -304,7 +304,7 @@ daveImage.addEventListener("click", async () => {
             daveImage.classList.add("hasOnlyHat")
         }
 
-        await delay(queueDaveText({ text: text, speed: 125 }))
+        await delay(queueDaveText({ text: text, speed: 60 }))
 
         allowClickingDave = true
         daveImage.style.cursor = "pointer"
