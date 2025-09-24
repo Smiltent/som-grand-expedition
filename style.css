@@ -22,6 +22,10 @@ body {
     visibility: hidden;
 }
 
+/* ################################################################################################ */
+/* ################################################################################################ */
+/* ################################################################################################ */
+
 /*                        */
 /*   Locations (Layers)   */
 /*                        */
@@ -53,6 +57,10 @@ body {
     z-index: -1;
 }
 
+/* ################################################################################################ */
+/* ################################################################################################ */
+/* ################################################################################################ */
+
 /*                             */
 /*     Transition Location     */
 /*                             */
@@ -68,6 +76,7 @@ body {
     transition: opacity 1s;
 }
 
+/* ################################################################################################ */
 /*                        */
 /*     Attic Location     */
 /*                        */
@@ -77,6 +86,7 @@ body {
     height: calc(100vh*0.15);
 }
 
+/* ################################################################################################ */
 /*                       */
 /*     Dave Location     */
 /*                       */
@@ -127,6 +137,7 @@ body {
     transform: translateX(0) translateY(calc(100vh*0.27));
 }
 
+/* ################################################################################################ */
 /*                      */
 /*   Crystal Location   */
 /*                      */
@@ -136,6 +147,7 @@ body {
     text-align: center;
 }
 
+/* ################################################################################################ */
 /*                       */
 /*   Basement Location   */
 /*                       */
@@ -163,12 +175,16 @@ body {
     transform: translateX(calc(100vh*0.4)) translateY(calc(100vh*0.215));
 }
 
+/* ################################################################################################ */
+/* ################################################################################################ */
+/* ################################################################################################ */
+
 /*             */
 /*   Buttons   */
 /*             */
-.btnArrow { 
+.btnArrow, .btnYellowArrow, .btnBlueArrow { 
     cursor: pointer;
-    background-image: url("/assets/other/arrow.png");
+
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -176,42 +192,26 @@ body {
     padding: calc(100vh*0.057) calc(100vh*0.057);
 }
 
-.btnYellowArrow { 
-    cursor: pointer;
-    background-image: url("/assets/other/arrow-yellow.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
+.btnYellowArrow, .btnBlueArrow { filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5)); }
+.btnArrow { background-image: url("/assets/other/arrow.png"); }
+.btnYellowArrow { background-image: url("/assets/other/arrow-yellow.png"); }
+.btnBlueArrow { background-image: url("/assets/other/arrow-blue.png"); }
 
-.btnBlueArrow { 
-    cursor: pointer;
-    background-image: url("/assets/other/arrow-blue.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
+/* ################################################################################################ */
 
-.btnUp {
-    transform: translateX(0) translateY(calc(100vh*-0.43));
-}
+.btnUp { transform: translateX(0) translateY(calc(100vh*-0.43)); }
+.btnDown { transform: translateX(0) translateY(calc(100vh*0.43)) rotate(180deg); }
+.btnLeft { transform: translateX(calc(100vh*-0.625)) translateY(0) rotate(-90deg); }
+.btnRight { transform: translateX(calc(100vh*0.625)) translateY(0) rotate(90deg);}
 
-.btnDown {
-    transform: translateX(0) translateY(calc(100vh*0.43)) rotate(180deg);
-}
-
-.btnLeft {
-    transform: translateX(calc(100vh*-0.625)) translateY(0) rotate(-90deg);
-}
-
-.btnRight {
-    transform: translateX(calc(100vh*0.625)) translateY(0) rotate(90deg);
-}
+/* ################################################################################################ */
 
 .btnBook {
     transform: translateX(calc(100vh*0.6787)) translateY(calc(100vh*0.044));
     padding: calc(100vh*0.032) calc(100vh*0.016);
 }
+
+/* ################################################################################################ */
 
 .btnBulletinLeft {
     cursor: pointer;
@@ -225,19 +225,22 @@ body {
     padding: calc(100vh*0.025) calc(100vh*0.022);
 }
 
+/* ################################################################################################ */
+
 .btnDoor {
     cursor: pointer;
     padding: calc(100vh*0.19) calc(100vh*0.12);
 }
 
-.btnDoorPosLeft {
-    transform: translateX(calc(100vh*-0.55)) translateY(calc(100vh*0.2));
-}
+.btnDoorPosLeft { transform: translateX(calc(100vh*-0.55)) translateY(calc(100vh*0.2)); }
+.btnDoorPosRight { transform: translateX(calc(100vh*0.55)) translateY(calc(100vh*0.2)); }
 
-.btnDoorPosRight {
-    transform: translateX(calc(100vh*0.55)) translateY(calc(100vh*0.2));
-}
+/* ################################################################################################ */
 
+.btnScene31 { transform: translateX(calc(100vh*0.55)) translateY(calc(100vh*0.2)) rotate(90deg); }
+.btnScene43 { transform: translateX(calc(100vh*-0.55)) translateY(calc(100vh*0.2)) rotate(-90deg); }
+.btnScene52 { transform: translateX(calc(100vh*0.25)) translateY(calc(100vh*0.35)) rotate(-135deg); }
+.btnScene70 { transform: translateX(calc(100vh*-0.25)) translateY(calc(100vh*0.35)) rotate(135deg); }
 
 /* Keyframes */
 @keyframes fadeIn {
@@ -289,26 +292,23 @@ body {
     /*   Buttons   */
     /*             */
 
-    .btnArrow {
-        padding: calc(100vw*0.04) calc(100vw*0.04);
-    }
-    .btnUp {
-        transform: translateX(0) translateY(calc(100vw*-0.31));
-    }
-    .btnDown {
-        transform: translateX(0) translateY(calc(100vw*0.31)) rotate(180deg);
-    }
-    .btnLeft {
-        transform: translateX(calc(100vw*-0.45)) translateY(0) rotate(-90deg);
-    }
-    .btnRight {
-        transform: translateX(calc(100vw*0.45)) translateY(0) rotate(90deg);
-    }
+    .btnArrow, .btnYellowArrow, .btnBlueArrow { padding: calc(100vw*0.04) calc(100vw*0.04); }
+
+    /* ################################################################################################ */
+
+    .btnUp { transform: translateX(0) translateY(calc(100vw*-0.31)); }
+    .btnDown { transform: translateX(0) translateY(calc(100vw*0.31)) rotate(180deg); }
+    .btnLeft { transform: translateX(calc(100vw*-0.45)) translateY(0) rotate(-90deg); }
+    .btnRight { transform: translateX(calc(100vw*0.45)) translateY(0) rotate(90deg); }
+
+    /* ################################################################################################ */
 
     .btnBook {
         transform: translateX(calc(100vw*0.488)) translateY(calc(100vw*0.032));
         padding: calc(100vw*0.023) calc(100vw*0.011);
     }
+
+    /* ################################################################################################ */
 
     .btnBulletinLeft {
         transform: translateX(calc(100vw*-0.233)) translateY(calc(100vw*0.11)) rotate(32deg);
@@ -320,15 +320,16 @@ body {
         padding: calc(100vw*0.02) calc(100vw*0.016);
     }
 
-    .btnDoor {
-        padding: calc(100vw*0.13) calc(100vw*0.08);
-    }
+    /* ################################################################################################ */
 
-    .btnDoorPosLeft {
-        transform: translateX(calc(100vw*-0.39)) translateY(calc(100vw*0.13));
-    }
+    .btnDoor { padding: calc(100vw*0.13) calc(100vw*0.08); }
+    .btnDoorPosLeft { transform: translateX(calc(100vw*-0.39)) translateY(calc(100vw*0.13)); }
+    .btnDoorPosRight { transform: translateX(calc(100vw*0.39)) translateY(calc(100vw*0.13)); }
 
-    .btnDoorPosRight {
-        transform: translateX(calc(100vw*0.39)) translateY(calc(100vw*0.13));
-    }
+    /* ################################################################################################ */
+
+    .btnScene31 { transform: translateX(calc(100vw*0.4)) translateY(calc(100vw*0.145)) rotate(90deg); }
+    .btnScene43 { transform: translateX(calc(100vw*-0.4)) translateY(calc(100vw*0.145)) rotate(-90deg); }
+    .btnScene52 { transform: translateX(calc(100vw*0.18)) translateY(calc(100vw*0.25)) rotate(-135deg); }
+    .btnScene70 { transform: translateX(calc(100vw*-0.18)) translateY(calc(100vw*0.25)) rotate(135deg); }
 }

@@ -1,5 +1,5 @@
 
-// location system
+// location variables
 const locations = [
     {"name": "daveLocation"},
     {"name": "atticLocation"},
@@ -11,19 +11,23 @@ const locations = [
 ]
 var currentLocation = "daveLocation"
 
-// dave texts on start
+// ################################################################################################
+// ################################################################################################
+// ################################################################################################
+
+// dave texts that begin on page load
 var initText = [
     {"text": "didnt ask lmao!", "wait": 750},
     {"text": "come in my crib tho", bg: true},
     {"text": "theres not much here"},
     {"text": "but if you go downstairs"},
     {"text": "theres a bulletin board with some info"},
-    {"text": "idk why its there, but its pretty cool", "wait": 1200},
+    {"text": "idk why its there, but its pretty cool", "wait": 3500},
     {"text": "wait you think i have more to say?", "wait": 3500},
     {"text": "you can click on me to talk", click: true}
 ]
 
-// dave texts on start after the crystal explotion of 87'
+// dave texts on page load after the crystal explotion of 87'
 const initTextAfterExplsion = [
     {"text": "didnt ask lmao!", "wait": 750},
     {"text": "come in my crib-", "wait": 50},
@@ -37,6 +41,10 @@ const initTextAfterExplsion = [
     {"text": "at this point, do i want to talk to you?", click: true, bg: true}
 ]
 
+// ################################################################################################
+// ################################################################################################
+// ################################################################################################
+
 // allow clicking dave
 var allowClickingDave = false
 
@@ -48,16 +56,20 @@ var bulletinBoardTextList
 var daveText = document.getElementById("daveText")
 var daveImage = document.getElementById("daveCharacter")
 
-// delay function
+// Delay function
 async function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms))
 }
 
-// Dave Text Animation
-// handling the text animation at the begining of the page
+// ################################################################################################
+// ################################################################################################
+// ################################################################################################
+
+// Dave Text Function - handles queueing (?) and animating daves text
 var daveTextqueue = []
 var isDaveTextPlaying = false
 
+// queue text
 function queueDaveText({ text, speed = 100, wait = 1000 }) {
     daveTextqueue.push({ text, speed, wait })
     playDaveTextQueue()
@@ -65,6 +77,7 @@ function queueDaveText({ text, speed = 100, wait = 1000 }) {
     return text.length * speed + wait
 }
 
+// play text
 async function playDaveTextQueue() {
     if (isDaveTextPlaying || daveTextqueue.length === 0) return
 
@@ -79,6 +92,7 @@ async function playDaveTextQueue() {
     isDaveTextPlaying = false
 }
 
+// display text
 function daveTextAnimation(text, speed) {
     return new Promise(resolve => {
         var index = 0
@@ -102,8 +116,11 @@ function daveTextAnimation(text, speed) {
     })
 } 
 
-// Location Change Handler
-// handles changing locations when buttons are pressed
+// ################################################################################################
+// ################################################################################################
+// ################################################################################################
+
+// Location Function - handles changing locations between different areas
 var transitionLocation = document.getElementById("transitionLocation")
 async function changeLocation(to) {
     if (!locations.some(e => e.name === to)) return
@@ -121,7 +138,7 @@ async function changeLocation(to) {
     transitionLocation.style.visibility = "hidden"
 }
 
-// Bulletin Page Handler
+// Bulletin Board Page Function - handles changing pages on the bulletin board
 var currentBulletinPage = 0
 async function bulletinPage(a) {
     if (a === "+") {
@@ -137,8 +154,11 @@ async function bulletinPage(a) {
     document.getElementById("bulletinBoardDescription").innerText = data.description
 }
 
-// On Load
-// the... uhh.. 🤔 (i forgor) uhm.. thing!!
+// ################################################################################################
+// ################################################################################################
+// ################################################################################################
+
+// On Page Load
 window.addEventListener('DOMContentLoaded', async () => {
     daveTextList = await fetch("/assets/text.json").then(response => response.json())
     bulletinBoardTextList = await fetch("/assets/bulletin.json").then(response => response.json())
@@ -174,12 +194,15 @@ window.addEventListener('DOMContentLoaded', async () => {
     }, 200)
 })
 
+// ################################################################################################
+// ################################################################################################
+// ################################################################################################
+
 // On Enter Press in the Question Box
-// handle animations when submitted the question
 document.getElementById("daveTextBox").addEventListener("keydown", async (event) => {
     if (event.key === "Enter") {
         if (!document.getElementById("daveTextBox").value.endsWith("?")) {
-            daveTextAnimation("Thats not a question...", 120)
+            queueDaveText({ text: "that doesnt look like a question to me", speed: 125 })
             return
         }
 
@@ -207,6 +230,10 @@ document.getElementById("daveTextBox").addEventListener("keydown", async (event)
     }
 })
 
+// ################################################################################################
+// ################################################################################################
+// ################################################################################################
+
 // On Click Crystal
 var crystalClicks = 0
 document.getElementById("crystal").addEventListener("click", async () => {
@@ -226,7 +253,7 @@ document.getElementById("crystal").addEventListener("click", async () => {
             document.getElementById("crystal").src = "/assets/crystal/3.png"
         break;
         case 13:    
-            new Audio("/assets/crystal/explode.mp3").play()
+            new Audio("/assets/other/explode.mp3").play()
             await delay(400)
             document.getElementById("crystal").src = "/assets/crystal/cracked.png"
 
@@ -248,16 +275,11 @@ document.getElementById("crystal").addEventListener("click", async () => {
     }
 })
 
-// On Key Click
-document.getElementById("atticKey").addEventListener("click", async () => {
-    document.getElementById("atticKey").style.visibility = "hidden"
-    document.getElementById("basementBChest").style.cursor = "pointer"
-
-    localStorage.setItem("sc18_hasKey", "true")
-})
+// ################################################################################################
+// ################################################################################################
+// ################################################################################################
 
 // On Dave Click
-// handle clicking on dave (my bad for forcing him to be clicked)
 daveImage.addEventListener("click", async () => {
     if (allowClickingDave) {
         allowClickingDave = false
@@ -287,4 +309,25 @@ daveImage.addEventListener("click", async () => {
         allowClickingDave = true
         daveImage.style.cursor = "pointer"
     }
+})
+
+// ################################################################################################
+// ################################################################################################
+// ################################################################################################
+
+// On Key Click
+document.getElementById("atticKey").addEventListener("click", async () => {
+    document.getElementById("atticKey").style.visibility = "hidden"
+    document.getElementById("basementBChest").style.cursor = "pointer"
+
+    localStorage.setItem("sc18_hasKey", "true")
+})
+
+// On Chest Click
+document.getElementById("basementBChest").addEventListener("click", async () => {
+    if (localStorage.getItem("sc18_hasKey") !== "true") return
+    localStorage.setItem("sc18_openedChest", "true")
+
+    new Audio("/assets/other/explode.mp3").play()
+    document.getElementById("basementBChest").style.visibility = "hidden"
 })

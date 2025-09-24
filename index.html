@@ -12,13 +12,15 @@
     <link rel="preload" href="/assets/locations/6_crystalflashbang.png" as="image">
 
     <link rel="preload" href="/assets/crystal/critical.ogg" as="audio">
-    <link rel="preload" href="/assets/crystal/explode.mp3" as="audio">
     <link rel="preload" href="/assets/crystal/flashbang.mp3" as="audio">
     <link rel="preload" href="/assets/crystal/hit.ogg" as="audio">
     <link rel="preload" href="/assets/crystal/0.png" as="image">
     <link rel="preload" href="/assets/crystal/1.png" as="image">
     <link rel="preload" href="/assets/crystal/2.png" as="image">
     <link rel="preload" href="/assets/crystal/3.png" as="image">
+
+    <link rel="preload" href="/assets/other/coin.mp3" as="audio">
+    <link rel="preload" href="/assets/other/explode.mp3" as="audio">
 
     <link rel="stylesheet" href="/style.css">
 
@@ -68,12 +70,18 @@
 
         <!-- Outside A -->
         <div class="hidden location" id="outsideALocation">
+            <a href="/scenes/43"><div class="btnYellowArrow btnScene43"></div></a>
+            <a href="/scenes/70"><div class="btnYellowArrow btnScene70"></div></a>
+
             <div class="btnDoor btnDoorPosRight" onclick="changeLocation('daveLocation')"></div> 
             <img class="locationBgImg" src="/assets/locations/2_outsidea.png" alt="bg">
         </div>
 
         <!-- Outside B -->
         <div class="hidden location" id="outsideBLocation">
+            <a href="/scenes/31"><div class="btnBlueArrow btnScene31"></div></a>
+            <a href="/scenes/52"><div class="btnBlueArrow btnScene52"></div></a>
+
             <div class="btnDoor btnDoorPosLeft" onclick="changeLocation('daveLocation')"></div> 
             <img class="locationBgImg" src="/assets/locations/3_outsideb.png" alt="bg">
         </div>
@@ -97,7 +105,7 @@
         </div>
 
         <!-- Basement B -->
-        <div class="hidden location" id="basementBLocation">
+        <div class="hidden location" id="basementBLocation">            
             <img style="cursor: not-allowed;" id="basementBChest" src="/assets/chest/chest.png" alt="chest (you need a key)">
             <div class="btnArrow btnRight" onclick="changeLocation('basementALocation')"></div> 
 
@@ -113,7 +121,7 @@
                 <p>check out other scenes</p>
                 <p><a href="/scenes/31">31</a> | <a href="/scenes/43">43</a> | <a href="/scenes/52">52</a> | <a href="/scenes/70">70</a></p>
             </div>
-            
+
             <img id="crystalBgImg" class="locationBgImg" src="/assets/locations/0_empty.png" alt="bg">
         </div>
     </div>
